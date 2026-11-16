@@ -2,224 +2,90 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#2563eb">
-<meta name="description" content="NABI MAP — 한국어와 일본어, 어느 언어로든 한국의 장소를 찾으세요. 지도 링크와 좌표도 한 번에.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="NABI MAP — 한국어와 일본어로 같은 장소를 찾는 지도.">
 <title>NABI MAP — 다른 언어, 같은 장소</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#172c2a;--sub:#667a72;--muted:#9aa6a0;--deep:#204c45;--accent:#276a5c;--soft:#e8f3ed;--pale:#f7f8f5;--line:#e7ede7;--white:#fff;--page:#ebeee9;--serif:Georgia,serif;--ui:'DM Sans','Pretendard','Noto Sans JP','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,Arial,sans-serif;--shadow:0 18px 64px #22362c1b,0 3px 12px #1d38220b}*{box-sizing:border-box}html,body{height:100%;width:100%;margin:0}body{font-family:var(--ui);color:var(--ink);background:var(--page);font-size:14px;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{color:inherit;cursor:pointer;border:0;background:none}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible{outline:3px solid #78bca5;outline-offset:3px}h1,h2,h3,p{margin:0}svg{width:21px;height:21px;display:block;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}.app{position:relative;width:100%;height:100vh;height:100dvh;isolation:isolate;overflow:hidden}.map-wrap{position:absolute;inset:0;background:#e6ece5}#map{width:100%;height:100%}.map-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f1f3ee1c 0%,transparent 50%,#f9faf211 100%)}.map-fallback{position:absolute;inset:0;background:#eaf0eb;overflow:hidden;z-index:2}.map-fallback[hidden]{display:none}.fallback-lines{position:absolute;inset:-50%;transform:rotate(-19deg);background:repeating-linear-gradient(90deg,transparent 0 115px,#fff9 116px 120px,transparent 121px 180px),repeating-linear-gradient(0deg,transparent 0 82px,#fff8 83px 88px,transparent 89px 173px);mask-image:linear-gradient(90deg,transparent,#0009)}.fallback-center{position:absolute;left:55%;top:48%;transform:translate(-50%,-50%);display:grid;justify-items:center;text-align:center;max-width:310px;gap:11px;padding:18px}.fallback-icon{color:var(--deep);background:#ffffffb8;box-shadow:0 12px 32px #19332313;padding:15px;border-radius:19px}.fallback-icon svg{width:28px;height:28px}.fallback-center strong{font-size:18px}.fallback-center p{line-height:1.65;color:#788d80;font-size:12px}.small-outline{margin-top:7px;border:1px solid #a7bcb1;background:#ffffffcc;padding:10px 16px;border-radius:10px;font-weight:700;font-size:12px}.shell{position:absolute;top:20px;bottom:20px;left:20px;width:422px;max-width:calc(100vw - 40px);border-radius:23px;background:#ffffffee;box-shadow:var(--shadow);border:1px solid #fff;z-index:8;display:flex;flex-direction:column;backdrop-filter:blur(28px);overflow:hidden}.topbar{height:79px;padding:0 27px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #edf1ed}.brand{display:flex;align-items:center;gap:8px;padding:3px 0}.brand-emblem{height:26px;width:26px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;transform:rotate(-16deg)}.brand-emblem i{display:block;background:#2a6558;border-radius:7px 1px 7px 1px}.brand-emblem i:nth-child(2){border-radius:1px 7px 1px 7px;transform:translateY(2px)}.brand-emblem i:nth-child(3){border-radius:1px 7px 1px 7px;transform:translateY(-2px)}.brand-word{font-size:27px;letter-spacing:-2px;font-weight:800;line-height:1}.brand-dot{color:#317b65}.brand-map{margin-left:4px;border-left:1px solid #d9e0d9;padding-left:11px;font-size:10px;letter-spacing:2.8px;font-weight:800;color:#9daaa0}.topbar-right{display:flex;align-items:center;gap:11px}.version-mark{font-size:9px;letter-spacing:.55px;font-weight:800;color:#63927e;background:#edf6f0;border:1px solid #e0eee5;padding:5px 7px;border-radius:5px}.lang-switch{display:flex;padding:3px;background:#f0f4ef;border-radius:9px;gap:1px}.lang-switch button{font-size:10px;color:#98a39a;padding:8px 9px;font-weight:700;border-radius:7px}.lang-switch button.active{background:white;color:#1d4035;box-shadow:0 1px 5px #2c4c3614}.hero{padding:28px 29px 21px}.hero-topline{display:flex;align-items:center;gap:9px;color:#779b89;font-size:9px;font-weight:800;letter-spacing:1.7px}.little-line{width:19px;height:2px;background:#8fbda3}.hero h1{font-size:37px;font-weight:800;letter-spacing:-1.95px;line-height:1.25;margin-top:15px;word-break:keep-all}.hero h1 span{color:#2a7660}.hero p{color:#8b9b90;margin-top:11px;font-size:12px;line-height:1.8;word-break:keep-all}.search-block{padding:0 27px 21px}.search-box{height:59px;padding:6px 6px 6px 17px;display:flex;gap:10px;align-items:center;border:1.5px solid #d6e4d9;border-radius:12px;background:white;box-shadow:0 5px 25px #315e3820}.search-box:focus-within{border-color:#79ad92;box-shadow:0 0 0 4px #c4e3d149}.search-icon{color:#6c9782}.search-icon svg{width:20px;height:20px}.search-box input{min-width:0;flex:1;outline:none;border:none;appearance:none;color:#273d32;font-size:12px;font-weight:600;background:transparent}.search-box input::-webkit-search-cancel-button{display:none}.search-box input::placeholder{color:#a8b6aa;font-weight:500}.input-clear{font-size:23px;color:#9eb0a5;width:24px}.search-enter{width:45px;height:45px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;background:#235a4d;color:white;transition:transform .18s,background .18s}.search-enter:hover{background:#144137;transform:translateY(-1px)}.search-hint{display:flex;align-items:center;gap:7px;margin:11px 0 0 3px;font-size:10px;color:#8da395}.search-hint svg{width:13px;height:13px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.chip{border:1px solid #e2eae3;border-radius:8px;padding:8px 11px;color:#647b6b;background:#f7faf6;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;transition:.15s}.chip:hover{background:#eaf4ed;border-color:#c3d9c9;color:#24694d}.chip svg{width:12px;height:12px}.view-tabs{height:55px;display:flex;align-items:stretch;flex-shrink:0;gap:27px;padding:0 27px;border-bottom:1px solid var(--line)}.view-tabs button{position:relative;color:#9bac9e;font-size:12px;font-weight:700;padding:0;white-space:nowrap}.view-tabs button.active{color:#204b3c}.view-tabs button.active:after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:#235c49}.tab-counter{font-size:10px;color:#3c7957;margin-left:5px}.panel-scroll{overflow:auto;flex:1;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#d5ded5 transparent}.panel-scroll:focus{outline:none}.panel-scroll::-webkit-scrollbar{width:5px}.panel-scroll::-webkit-scrollbar-thumb{background:#d5ded5;border-radius:5px}.sidebar-footer{height:51px;flex-shrink:0;padding:0 27px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #edf1ec;color:#9aa99e;font-size:10px;background:#ffffffee}.footer-signal{display:flex;align-items:center;gap:8px}.signal-dot{width:6px;height:6px;border-radius:50%;background:#72ae89;box-shadow:0 0 0 3px #e9f3e9}.sidebar-footer button{color:#678876;font-size:10px;text-decoration:underline;text-underline-offset:3px}.section-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:25px 27px 15px}.section-header h2{font-size:14px;font-weight:800;letter-spacing:-.35px}.section-header .aside-note{font-size:10px;color:#9caaa0}.featured-box{margin:22px 22px 12px;padding:22px;border-radius:15px;background:linear-gradient(145deg,#edf5ed,#f6f8f3);border:1px solid #e3ede3;position:relative;overflow:hidden}.featured-box:before{content:"";position:absolute;border:1px solid #c4dac9a6;border-radius:50%;height:240px;width:240px;top:-160px;right:-95px;box-shadow:0 0 0 21px #d8e9de65,0 0 0 55px #d8e9de43}.featured-kicker{font-size:9px;color:#66927c;letter-spacing:1.6px;font-weight:800;position:relative}.featured-box h2{font-size:21px;letter-spacing:-.8px;margin-top:13px;line-height:1.35;position:relative}.featured-box p{font-size:11px;color:#83988a;margin-top:9px;line-height:1.7;position:relative}.example-pair{display:flex;gap:10px;align-items:center;margin-top:20px;position:relative}.example-pair span{font-size:10px;font-weight:800;color:#467861;background:#fff;padding:10px 12px;border:1px solid #e0e9de;border-radius:7px}.example-pair svg{width:16px;height:16px;color:#9bb9a4}.example-pair span:last-child{background:#d6e9da;color:#2f7250}.mini-tips{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 22px 12px}.tip-card{display:flex;align-items:center;text-align:left;gap:10px;border:1px solid #ebefe8;background:#fff;padding:13px 12px;border-radius:11px}.tip-card:hover{background:#f5faf5}.tip-icon{color:#398062;background:#eaf3eb;border-radius:9px;width:32px;height:32px;display:grid;place-items:center;flex-shrink:0}.tip-icon svg{width:17px;height:17px}.tip-card strong{font-size:11px;display:block}.tip-card small{font-size:9px;line-height:1.5;color:#9aaa9e;margin-top:3px;display:block}.place-list{padding:0 16px 22px}.place-item{width:100%;display:flex;align-items:center;gap:13px;text-align:left;min-height:77px;padding:12px;border:1px solid transparent;border-radius:12px}.place-item:hover{border-color:#e3eee5;background:#f6faf7}.place-item.selected{border-color:#c9dfcf;background:#f0f7f1}.place-glyph{background:#edf5ee;color:#417d5d;min-width:39px;width:39px;height:39px;border-radius:11px;display:grid;place-items:center}.place-glyph svg{width:20px;height:20px}.place-item-info{flex:1;min-width:0}.place-item-info strong{display:block;font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.place-item-info span{display:block;color:#91a397;font-size:10px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.place-item-info .source-small{color:#9ba89f;font-size:9px}.place-arrow{color:#9aafa0}.place-arrow svg{width:15px;height:15px}.result-status{padding:15px 27px;display:flex;align-items:center;gap:9px;font-size:11px;color:#688273;background:#f6faf6;border-bottom:1px solid #edf1ee}.result-status svg{width:15px;height:15px}.results-note{margin:4px 27px 14px;color:#99a69b;font-size:10px;line-height:1.7}.empty-state{padding:58px 30px;text-align:center;display:grid;justify-items:center;gap:11px}.empty-symbol{color:#55816a;background:#f0f7f1;padding:17px;border-radius:17px}.empty-symbol svg{width:26px;height:26px}.empty-state strong{font-size:14px;margin-top:7px}.empty-state p{font-size:11px;color:#97a79b;line-height:1.7;max-width:280px}.empty-state button{font-size:11px;background:#eaf3ed;padding:11px 15px;border-radius:8px;color:#356a50;font-weight:800}.inline-loader{width:14px;height:14px;border-radius:50%;border:2px solid #c2d8c9;border-top-color:#478069;animation:spin .7s linear infinite}.map-header{position:absolute;z-index:5;top:23px;left:calc(442px + (100% - 442px)/2);transform:translateX(-50%);display:flex;gap:15px;align-items:center;pointer-events:none}.map-city-switch{background:#fffffff2;box-shadow:0 7px 25px #1d35231c;border:1px solid #fff;border-radius:12px;padding:5px;display:flex;gap:3px;pointer-events:auto;backdrop-filter:blur(14px)}.map-city-switch button{padding:10px 17px;border-radius:8px;color:#849489;font-size:11px;font-weight:800;transition:.15s}.map-city-switch button:hover{color:#2d765a}.map-city-switch button.active{background:#245a4c;color:white}.map-microcopy{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:1.2px;color:#819389;white-space:nowrap}.pin-ring{width:7px;height:7px;background:#448b71;border:2px solid #eaf5ec;border-radius:50%;box-shadow:0 0 0 2px #69ae8c}.map-actions{position:absolute;z-index:6;right:25px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;background:#fffffff2;border:1px solid #fff;box-shadow:0 8px 28px #1d35231c;border-radius:14px;padding:6px;gap:2px}.map-actions button{height:42px;width:42px;display:grid;place-items:center;color:#3d584a;border-radius:8px}.map-actions button:hover{background:#eef5ee}.map-actions svg{width:19px;height:19px}.control-divider{height:1px;background:#edf0e9;margin:3px 6px}.bottom-map-legend{position:absolute;z-index:3;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;font-size:10px;color:#749080;text-shadow:0 1px 3px white;pointer-events:none}.legend-line{width:13px;height:1px;background:#709d85}.maplibregl-ctrl-bottom-right{right:14px!important}.maplibregl-ctrl-attrib{font-size:9px!important;background:#ffffffe0!important;border-radius:4px!important}.maplibregl-marker{cursor:pointer}.nabi-pin{display:grid;place-items:center;width:36px;height:43px;filter:drop-shadow(0 5px 8px #1c503a3b)}.nabi-pin svg{width:35px;height:43px;fill:#245d4d;stroke:#fff;stroke-width:1.5}.nabi-pin.is-selected svg{fill:#172e2c;width:41px;height:50px}.place-card{position:absolute;z-index:7;right:88px;bottom:45px;width:365px;max-width:calc(100vw - 50px);border-radius:20px;background:#fffffffa;box-shadow:0 20px 58px #1b3c2d30,0 2px 10px #243e2b13;border:1px solid #fff;overflow:hidden;animation:cardEnter .24s ease both}.place-card[hidden]{display:none}.detail-top{height:87px;background:linear-gradient(145deg,#e1eee3,#f1f6ef);position:relative;display:flex;align-items:center;padding:16px 24px;overflow:hidden}.detail-top:after{content:"";position:absolute;right:-20px;top:-60px;border:1px solid #cee2d5;width:180px;height:180px;border-radius:50%;box-shadow:0 0 0 30px #dae9db70,0 0 0 60px #dae9db50}.detail-index{font-size:9px;font-weight:800;color:#598a6b;letter-spacing:1.4px;position:relative;z-index:1}.detail-close{position:absolute;right:17px;top:14px;width:30px;height:30px;display:grid;place-items:center;background:#ffffffb7;border-radius:50%;font-size:20px;z-index:3;color:#6b8777}.detail-content{padding:21px 23px 23px}.detail-category{display:flex;gap:8px;align-items:center;color:#559071;font-size:10px;font-weight:800}.detail-category svg{width:14px;height:14px}.detail-title{font-size:23px;letter-spacing:-.8px;line-height:1.35;font-weight:800;margin-top:8px}.detail-subtitle{color:#83988c;font-size:12px;margin-top:6px}.detail-address{margin-top:17px;border-top:1px solid #edf0e9;padding-top:15px;display:flex;gap:9px;align-items:flex-start;color:#64796a;line-height:1.6;font-size:11px}.detail-address svg{width:15px;height:15px;flex-shrink:0;margin-top:2px}.detail-note{font-size:10px;color:#a2ada4;margin-top:9px;line-height:1.5}.primary-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:19px}.primary-actions button{height:46px;display:flex;gap:8px;align-items:center;justify-content:center;border-radius:10px;font-size:12px;font-weight:800}.primary-actions button svg{width:17px;height:17px}.route-btn{background:#245e4d;color:white}.route-btn:hover{background:#164435}.save-btn{background:#edf5ee;color:#2f7053}.save-btn:hover{background:#e0ece3}.secondary-actions{display:flex;justify-content:space-between;gap:7px;margin-top:15px}.secondary-actions button{font-size:10px;color:#7c9382;display:flex;align-items:center;gap:5px;padding:4px 0}.secondary-actions button:hover{color:#205e46}.secondary-actions svg{width:14px;height:14px}.external-section{border-top:1px solid #edf1ed;margin-top:18px;padding-top:15px}.external-title{font-size:10px;color:#9aab9d;font-weight:700}.external-links{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}.external-links a{color:#577261;text-decoration:none;text-align:center;padding:10px 3px;border:1px solid #e5ede5;border-radius:8px;background:#fbfcf9;font-size:10px;font-weight:800}.external-links a:hover{border-color:#bbd6c5;background:#f0f7ef}.toast{z-index:50;pointer-events:none;position:absolute;bottom:28px;left:50%;transform:translate(-50%,15px);opacity:0;color:#fff;background:#254e43;border-radius:10px;box-shadow:0 14px 34px #16382e33;padding:13px 20px;font-size:12px;font-weight:700;transition:transform .2s,opacity .2s;white-space:nowrap}.toast.visible{transform:translate(-50%,0);opacity:1}.about-dialog{width:min(460px,calc(100vw - 35px));border:none;padding:0;border-radius:19px;box-shadow:0 20px 80px #0e312b4f;color:var(--ink);background:#fff;overflow:hidden}.about-dialog::backdrop{background:#0e292988;backdrop-filter:blur(5px)}.dialog-heading{padding:25px 26px 17px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #edf0eb}.dialog-heading strong{font-size:23px;font-weight:800;letter-spacing:-1px}.dialog-heading strong span{color:#368d6a}.close-dialog{font-size:27px;color:#829d89}.about-dialog #aboutContent{padding:25px 26px 30px;font-size:12px;color:#718579;line-height:1.9}.about-dialog #aboutContent p+p{margin-top:13px}.about-dialog #aboutContent strong{color:#2e6550}.about-dialog #aboutContent a{color:#1f785a}.nabi-mini-map{color:#466f5c}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@keyframes spin{to{transform:rotate(360deg)}}@keyframes cardEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:1100px){.map-header{left:auto;right:25px;transform:none}.map-microcopy{display:none}.place-card{right:83px}.shell{width:390px}}@media(max-width:760px){.app{height:100dvh}.shell{top:env(safe-area-inset-top,0px);bottom:auto;left:0;width:100%;max-width:none;height:auto;min-height:0;max-height:min(50dvh,385px);border-radius:0 0 22px 22px;box-shadow:0 12px 37px #1a31252b;background:#fffffffa;border:0}.topbar{height:63px;padding:0 19px}.brand-word{font-size:24px}.brand-emblem{height:24px;width:24px}.version-mark{font-size:8px}.hero{display:none}.search-block{padding:12px 17px 10px}.search-box{height:52px;padding-left:14px}.search-enter{width:40px;height:40px}.search-hint{margin-top:7px;font-size:9px}.chips{margin-top:11px;gap:6px}.chip{padding:6px 9px;font-size:10px}.view-tabs{height:45px;padding:0 19px;gap:24px}.view-tabs button{font-size:11px}.panel-scroll{max-height:150px;min-height:0}.sidebar-footer{display:none}.featured-box{margin:10px 16px;padding:14px}.featured-box h2{font-size:16px;margin-top:8px}.featured-box p{font-size:10px}.featured-kicker{font-size:8px}.example-pair{margin-top:9px}.example-pair span{padding:7px 9px;font-size:9px}.mini-tips{margin:8px 16px;gap:6px}.tip-card{padding:9px;gap:7px}.tip-card small{display:none}.tip-icon{width:27px;height:27px}.section-header{margin:15px 18px 8px}.place-list{padding:0 10px 9px}.place-item{min-height:60px;padding:8px 10px}.place-glyph{width:32px;min-width:32px;height:32px}.map-header{top:auto;left:50%;right:auto;bottom:calc(19px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5}.map-city-switch{border-radius:50px;box-shadow:0 10px 32px #11332130;padding:5px}.map-city-switch button{padding:10px 17px;border-radius:50px}.map-actions{right:12px;top:calc(50% + 55px);border-radius:12px}.map-actions button{width:37px;height:37px}.bottom-map-legend{display:none}.place-card{right:12px;left:12px;bottom:calc(66px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;border-radius:17px}.detail-top{height:53px;padding:12px 18px}.detail-content{padding:13px 18px 16px}.detail-title{font-size:19px;margin-top:5px}.detail-subtitle{font-size:11px;margin-top:4px}.detail-address{margin-top:11px;padding-top:11px}.detail-note{margin-top:6px;font-size:9px}.primary-actions{margin-top:12px}.primary-actions button{height:40px}.secondary-actions{margin-top:10px}.external-section{margin-top:11px;padding-top:10px}.external-links{margin-top:8px}.external-links a{padding:8px 0}.toast{bottom:calc(20px + env(safe-area-inset-bottom,0px));max-width:90vw;white-space:normal;text-align:center}.fallback-center{top:65%;left:50%}.maplibregl-ctrl-attrib{max-width:60vw;font-size:8px!important}}@media(max-width:380px){.brand-map{display:none}.chips{gap:4px}.chip{padding:5px 7px}.map-actions{top:52%}.shell{max-height:52dvh}.place-card{bottom:60px}.external-links a{font-size:9px}}
-
-@media(max-width:760px){.app.detail-active .shell{max-height:none}.app.detail-active .search-block{padding-bottom:13px}.app.detail-active .search-hint,.app.detail-active .chips,.app.detail-active .view-tabs,.app.detail-active .panel-scroll{display:none}.app.detail-active .map-actions{top:32%}.featured-box{padding:13px 15px;margin:8px 14px}.featured-box h2{font-size:15px;margin-top:7px}.featured-box p{display:none}.example-pair{margin-top:9px}.mini-tips{display:none}.panel-scroll{max-height:180px}}
-
-@media(max-width:760px){.featured-box{display:none}.panel-scroll{max-height:180px}.section-header{margin:13px 18px 8px}}
-
-</style>
-<style>
-/* NABI MAP BETA 0.4 — cobalt blue, brighter real-world map */
-:root{--ink:#182739;--sub:#62758a;--muted:#8797a9;--deep:#2259c8;--accent:#2563eb;--soft:#eaf1ff;--pale:#f7f9fc;--line:#e4e9f1;--page:#e5ecf5;--shadow:0 16px 40px rgba(27,48,76,.12),0 2px 6px rgba(27,48,76,.04)}
-body{color:var(--ink);background:#e8f1fa}
-.map-wrap{background:linear-gradient(120deg,#d8eaf2,#f4f2e7 65%)}
-#map{background:#deecf5}
-.map-shade{background:none}
-.shell{width:386px;left:18px;top:18px;bottom:18px;max-width:calc(100vw - 36px);border-radius:16px;background:rgba(255,255,255,.97);border:1px solid #eaf0f5;box-shadow:var(--shadow);backdrop-filter:blur(14px)}
-.topbar{height:69px;padding:0 22px;border-bottom:1px solid var(--line)}
-.brand-word{color:#1a293c;font-size:27px;letter-spacing:-1.7px}
-.brand-dot{color:var(--accent)}
-.brand-emblem i{background:#2563eb;border-radius:4px 1px 4px 1px}
-.brand-map{border-color:#d4dfec;color:#687a91}
-.version-mark{background:#edf3ff;border:1px solid #e0eaff;color:#3568ce}
-.lang-switch{background:#edf2f9;border-radius:8px}
-.lang-switch button.active{color:#2155c0}
-.hero{padding:20px 24px 14px}
-.hero-topline{display:none}
-.hero h1{margin:0;font-size:23px;line-height:1.33;letter-spacing:-.7px;font-weight:800}
-.hero h1 span{color:var(--accent)}
-.hero p{margin-top:6px;font-size:11px;color:#8292a4;line-height:1.6}
-.search-block{padding:0 22px 14px}
-.search-box{height:52px;padding:5px 5px 5px 13px;border:1px solid #d4e1f3;border-radius:11px;box-shadow:0 3px 12px #224b8612;background:#fff}
-.search-box:focus-within{border-color:#2563eb;box-shadow:0 0 0 3px #2563eb1b}
-.search-icon{color:#7390b2}
-.search-box input{font-size:12px;font-weight:500;color:#182739}
-.search-enter{height:40px;width:40px;background:var(--accent);border-radius:8px}
-.search-enter:hover{background:#174fc9}
-.search-hint{color:#8294a9;margin-top:9px;font-size:10px}
-.chips{margin-top:14px;gap:6px}
-.chip{background:#f7faff;color:#4c6485;border:1px solid #e5ecf5;border-radius:7px;padding:7px 9px;font-weight:600}
-.chip:hover{background:#eaf1ff;color:#245ddd;border-color:#c9d9fa}
-.view-tabs{padding:0 22px;height:48px;gap:24px;border-bottom:1px solid var(--line)}
-.view-tabs button{color:#7d8da1;font-size:12px}
-.view-tabs button.active{color:#235bd7}
-.view-tabs button.active:after{height:3px;background:var(--accent);border-radius:3px 3px 0 0}
-.tab-counter{color:#2563eb}
-.sidebar-footer{height:43px;padding:0 22px;border-color:var(--line);background:#fff;color:#90a0b2}
-.signal-dot{background:#2563eb;box-shadow:0 0 0 3px #e4edff}
-.sidebar-footer button{color:#5578b1}
-.section-header{margin:20px 20px 12px}
-.section-header h2{font-size:13px;font-weight:800}
-.section-header .aside-note{font-size:10px;color:#9aa8b8}
-.featured-box{margin:16px 16px 8px;padding:15px 17px;background:linear-gradient(145deg,#f2f7ff,#edf4ff);border:1px solid #e2ebfa;border-radius:11px}
-.featured-box:before{display:none}
-.featured-box h2{font-size:17px;letter-spacing:-.4px;margin-top:4px}
-.featured-box p{font-size:10px;margin-top:4px;color:#6c84a1}
-.featured-kicker{letter-spacing:1px;color:#4475cd}
-.example-pair{margin-top:12px;gap:7px}
-.example-pair span{background:#fff;color:#3262aa;padding:6px 9px;border-radius:6px;font-size:10px;border-color:#dce8fa}
-.example-pair span:last-child{color:#fff;background:#2563eb;border-color:#2563eb}
-.example-pair svg{color:#7998ca}
-.mini-tips{margin:9px 16px 6px;gap:7px}
-.tip-card{border-color:#e6ebf3;border-radius:9px;padding:11px 10px}
-.tip-card:hover{background:#f3f7fd}
-.tip-card strong{font-size:11px}
-.tip-icon{background:#eaf1ff;color:#285ece;border-radius:7px;width:30px;height:30px}
-.place-list{padding:0 10px 14px}
-.place-item{min-height:70px;border-radius:9px;padding:10px 11px;gap:11px}
-.place-item:hover{background:#f5f8fe;border-color:#e4ebf8}
-.place-item.selected{background:#edf3ff;border-color:#cbdcfc}
-.place-glyph{background:#edf3ff;color:#285ed1;border-radius:8px;min-width:37px;width:37px;height:37px}
-.place-item-info strong{font-size:12px}
-.place-item-info span{color:#8494a8;font-size:10px}
-.place-arrow{color:#9eacc0}
-.result-status{background:#f3f7ff;color:#5175a5;border-bottom-color:#e7eef9}
-.map-header{top:20px;left:calc(404px + (100% - 404px)/2)}
-.map-city-switch{background:#fff;box-shadow:0 7px 25px #263c6120;border:1px solid #e2eaf5;border-radius:11px;padding:4px}
-.map-city-switch button{border-radius:7px;color:#637a95}
-.map-city-switch button.active{color:#fff;background:#2563eb;box-shadow:0 2px 7px #2e69d535}
-.map-microcopy{display:none}
-.map-actions{right:20px;background:#fffc;box-shadow:0 8px 22px #21345420;border:1px solid #dfe8f2;border-radius:12px}
-.map-actions button{color:#3d597e}
-.map-actions button:hover{background:#eaf1ff;color:#2563eb}
-.bottom-map-legend{background:#fffE;border:1px solid #e5ecf3;color:#617c9a;box-shadow:0 4px 14px #263b5a11;border-radius:8px}
-.legend-line{background:#2563eb}
-.nabi-pin{filter:drop-shadow(0 3px 7px #11345a55)}
-.nabi-pin svg{fill:#2563eb}
-.nabi-pin.is-selected svg{fill:#143d9d}
-.place-card{right:84px;bottom:35px;border-radius:15px;border:1px solid #e8edf4;box-shadow:0 16px 40px #1e34552e}
-.detail-index{color:#537bb9}
-.detail-title{color:#162a44}
-.detail-category{color:#3566aa}
-.route-btn{background:#2563eb!important;color:#fff!important}
-.route-btn:hover{background:#184fcb!important}
-.save-btn:hover,.secondary-actions button:hover{background:#edf3ff!important}
-.map-fallback{background:linear-gradient(120deg,#cddfe9,#ebf4eb)}
-.fallback-lines{opacity:.65;transform:rotate(-12deg);background:repeating-linear-gradient(90deg,transparent 0 104px,#fff8 105px 111px,transparent 112px 180px),repeating-linear-gradient(0deg,transparent 0 60px,#fff8 61px 65px,transparent 66px 147px)}
-.fallback-icon{color:#2563eb;border:1px solid #fff}
-.small-outline{color:#2254bc;border-color:#b1c9ef;background:#fff}
-.raster-map{position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
-.raster-map.dragging{cursor:grabbing}
-.raster-tiles,.raster-markers{position:absolute;inset:0;pointer-events:none}
-.raster-tile{position:absolute;display:block;max-width:none;object-fit:fill;user-select:none;-webkit-user-select:none;pointer-events:none}
-.raster-markers{z-index:3}
-.raster-marker{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;will-change:left,top}
-.raster-attribution{position:absolute;bottom:2px;right:7px;z-index:4;padding:3px 6px;border-radius:3px;font-size:10px;line-height:1.4;color:#516781;background:#ffffffe6;pointer-events:none}
-@media(max-width:1100px){.map-header{left:auto;right:20px}}
-@media(max-width:760px){.shell{left:0;right:0;top:0;bottom:auto;width:100%;max-width:none;border-radius:0 0 16px 16px;border-left:0;border-right:0;box-shadow:0 8px 22px #1a335b20}.topbar{height:56px;padding:0 17px}.hero{padding:12px 17px 10px}.hero h1{font-size:19px}.hero p{font-size:10px;margin-top:4px}.search-block{padding:0 17px 13px}.search-box{height:47px}.search-enter{height:36px;width:36px}.search-hint{display:none}.chips{margin-top:9px}.view-tabs{height:41px;padding:0 17px;gap:22px}.featured-box{display:none}.section-header{margin:17px 15px 7px}.map-header{top:auto;left:50%;right:auto;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%)}.map-actions{top:51%;right:13px}.place-card{left:12px;right:12px;bottom:calc(65px + env(safe-area-inset-bottom,0px));border-radius:15px}.raster-attribution{bottom:3px;left:4px;right:auto;font-size:8px}.app.detail-active .map-actions{top:36%}}
-/* Unified blue action language */
-.save-btn{background:#eaf1ff!important;color:#215bd5!important;border-color:#dbe7ff!important}
-.save-btn:hover{background:#dce9ff!important}
-.secondary-actions button{color:#687e9e}
-.secondary-actions button:hover{color:#2059d4}
-.external-links a{color:#4f6c99;border-color:#e0e8f4;background:#fafcff}
-.external-links a:hover{color:#245ad0;border-color:#c2d6fb;background:#eef4ff}
-.detail-address{color:#6b7f96;border-top-color:#e8eef6}
-.detail-note{color:#8293a8}
+:root{--blue:#2764e7;--blue-dark:#1950c6;--blue-soft:#eaf1ff;--ink:#192638;--muted:#738195;--border:#e8edf3;--shadow:0 12px 40px rgba(27,51,90,.10),0 2px 8px rgba(37,55,90,.045);--font:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans CJK KR','Noto Sans CJK JP','Malgun Gothic','Segoe UI',sans-serif}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:#edf3f5;color:var(--ink);font:14px var(--font);-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer;border:0;background:none;color:inherit}button:focus-visible,input:focus-visible{outline:3px solid #80b1ff;outline-offset:2px}button:disabled{opacity:.45;cursor:default}h1,h2,h3,p{margin:0}svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+.app{width:100%;height:100vh;height:100dvh;position:relative;overflow:hidden;background:#dbe9e5;isolation:isolate}.map-canvas{position:absolute;inset:0;background:#e6eddf;touch-action:none;cursor:grab;overflow:hidden}.map-canvas.dragging{cursor:grabbing}.tiles,.markers{position:absolute;inset:0;overflow:hidden}.tiles{z-index:0}.markers{z-index:1;pointer-events:none}.tile{position:absolute;width:256px;height:256px;user-select:none;-webkit-user-drag:none;image-rendering:auto}.map-shade{pointer-events:none;position:absolute;inset:0;background:linear-gradient(90deg,rgba(240,247,251,.05),transparent 52%);z-index:1}.attribution{position:absolute;right:11px;bottom:6px;z-index:3;background:#ffffffd9;padding:3px 6px;border-radius:3px;font-size:10px;color:#5c6f79}.map-status{position:absolute;z-index:4;left:calc(50% + 180px);top:50%;transform:translate(-50%,-50%);width:270px;padding:22px;text-align:center;background:#fffffff2;border:1px solid #e4ecf2;border-radius:14px;box-shadow:var(--shadow)}.map-status[hidden]{display:none}.status-illustration{color:var(--blue);font-size:32px;font-weight:800;height:42px}.map-status strong{font-size:14px;display:block}.map-status p{font-size:12px;color:var(--muted);line-height:1.65;margin-top:7px}.status-retry{margin-top:15px;background:var(--blue);color:white;padding:10px 14px;font-weight:700;border-radius:9px;font-size:12px}.map-status button[hidden]{display:none}
+.panel{position:absolute;z-index:9;left:22px;top:22px;bottom:22px;width:380px;background:white;border:1px solid #e5edf2;border-radius:17px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}.panel-top{flex:0 0 auto;background:white}.brand-line{height:76px;padding:0 22px;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:8px;padding:3px 0}.brand-symbol{display:grid;grid-template-columns:repeat(2,8px);grid-template-rows:repeat(2,8px);gap:3px;transform:rotate(-13deg);margin-right:2px}.brand-symbol i{background:var(--blue);border-radius:3px 1px 3px 1px}.brand-symbol i:nth-child(2){transform:translateY(2px);opacity:.85}.brand-symbol i:nth-child(3){transform:translateY(-2px);opacity:.75}.brand-type{font-size:26px;font-weight:820;letter-spacing:-1.5px;line-height:1}.brand-point{color:var(--blue)}.brand-product{font-size:11px;letter-spacing:.8px;text-transform:uppercase;border-left:1px solid #dce4ed;padding-left:10px;margin-left:5px;color:#7e8ca0;font-weight:750}.lang-toggle{border:1px solid #e6edf5;background:#f3f6fa;border-radius:9px;padding:3px;display:flex;gap:2px}.lang-toggle button{padding:7px 9px;border-radius:6px;font-size:11px;color:#8b97a7;font-weight:700}.lang-toggle button.active{background:white;color:#253950;box-shadow:0 1px 5px #182a4414}
+.search-form{height:52px;border:1.5px solid #cedbef;border-radius:12px;margin:0 20px 0 20px;display:flex;align-items:center;gap:10px;padding:4px 5px 4px 14px;background:#fff;box-shadow:0 3px 10px #2964b008}.search-form:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px #2764e714}.search-glass{color:#7e99bf}.search-glass svg{width:19px;height:19px}.search-form input{outline:none!important;border:0;min-width:0;flex:1;background:transparent;font-weight:550;color:var(--ink);font-size:13px}.search-form input::placeholder{font-weight:450;color:#98a5b4}.search-form input::-webkit-search-cancel-button{display:none}.clear-btn{font-size:22px;color:#8c9aaf}.clear-btn[hidden]{display:none}.search-submit{display:grid;place-items:center;background:var(--blue);color:white;border-radius:8px;width:42px;height:42px;flex:0 0 auto}.search-submit:hover,.primary-action:hover{background:var(--blue-dark)}.search-submit svg{width:19px;height:19px}.search-tools{padding:11px 21px 15px;display:flex;gap:8px;align-items:center;justify-content:space-between}.search-tools>span{color:#9aa6b6;font-size:10px;min-width:0}.search-tools button{font-size:10.5px;display:flex;gap:4px;align-items:center;white-space:nowrap;color:var(--blue);font-weight:700;padding:3px}.search-tools svg{width:13px;height:13px}.tabs{height:49px;border-bottom:1px solid var(--border);display:flex;gap:24px;padding:0 23px}.tabs button{position:relative;color:#9aa6b6;font-size:12px;font-weight:700;white-space:nowrap;padding:0 0 1px}.tabs button.active{color:var(--blue)}.tabs button.active:after{position:absolute;content:'';height:2px;bottom:-1px;left:0;right:0;background:var(--blue);border-radius:2px}.tabs small{font-size:10px;color:var(--blue);margin-left:3px}.panel-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#dfe6ef transparent}.panel-bottom{height:43px;border-top:1px solid var(--border);display:flex;align-items:center;gap:7px;color:#98a6b7;font-size:10px;padding:0 21px;flex:0 0 auto}.panel-bottom button{margin-left:auto;font-size:17px;color:#8b9cad}.online-dot{width:7px;height:7px;border-radius:50%;background:#6bbb99}.panel-headline{padding:25px 23px 10px}.eyebrow{color:var(--blue);font-size:10px;letter-spacing:1.05px;font-weight:760}.panel-headline h1{margin-top:7px;font-size:20px;font-weight:800;letter-spacing:-.75px;line-height:1.4}.panel-headline p{margin-top:6px;color:#8693a5;font-size:11.5px;line-height:1.6}.category-bar{padding:11px 21px 18px;display:flex;flex-wrap:wrap;gap:7px}.category{border:1px solid #e1e9f2;background:#f8fafc;border-radius:8px;padding:8px 11px;font-size:11px;color:#52657d;font-weight:680}.category.active,.category:hover{border-color:#bcd2f8;background:#eaf2ff;color:var(--blue)}.results-head{display:flex;justify-content:space-between;align-items:center;margin:2px 23px 7px}.results-head h2{font-size:13px;font-weight:800}.results-head span{font-size:10px;color:#9eabbb}.place-list{padding:0 11px 18px}.place-row{width:100%;padding:12px 12px;display:flex;gap:12px;align-items:center;text-align:left;border-radius:10px;border:1px solid transparent;min-height:70px}.place-row:hover{background:#f5f8fc}.place-row.active{background:#eff5ff;border-color:#d6e5ff}.place-icon{display:grid;place-items:center;width:39px;height:39px;min-width:39px;background:#eaf1fb;border-radius:10px;color:#426fa6}.place-icon svg{width:20px;height:20px}.place-info{flex:1;min-width:0}.place-info strong{display:block;font-size:12.8px;font-weight:780;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.place-info .foreign{display:block;font-size:11px;color:#8898aa;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.place-info .area{font-size:10px;color:#a2afbc;margin-top:4px;display:block}.place-chevron{font-size:20px;color:#bac5d3;margin-left:4px}.empty{padding:50px 24px;display:flex;align-items:center;flex-direction:column;text-align:center;gap:10px}.empty .empty-mark{background:#eaf1ff;color:var(--blue);border-radius:12px;padding:13px}.empty .empty-mark svg{width:24px;height:24px}.empty strong{font-size:14px}.empty p{font-size:11px;color:#92a0af;line-height:1.8}.notice{margin:13px 19px 0;padding:12px 13px;border:1px solid #e9edf3;border-radius:9px;background:#f8fafc;font-size:11px;line-height:1.65;color:#778798}.loading-row{padding:14px 22px;color:#6d80a2;font-size:11px}.list-action{color:var(--blue);font-size:11px;font-weight:700}
+.city-switch{position:absolute;z-index:6;right:22px;top:22px;background:#fffffff5;border:1px solid #e7edf4;border-radius:11px;padding:5px;display:flex;gap:3px;box-shadow:0 5px 19px #24436416}.city-switch button{font-size:12px;padding:10px 14px;border-radius:7px;font-weight:720;color:#78869b}.city-switch button.active{background:var(--blue);color:white}.map-controls{position:absolute;z-index:6;right:22px;top:50%;transform:translateY(-50%);background:#fff;border:1px solid #e5ebf2;border-radius:12px;box-shadow:0 6px 23px #22416916;display:grid;padding:5px}.map-controls button{width:40px;height:40px;display:grid;place-items:center;color:#53677f}.map-controls button:hover{color:var(--blue);background:#f3f7ff;border-radius:8px}.map-controls span{height:1px;background:#ebeff3;margin:3px 5px}.marker{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;border:none;background:transparent;padding:0;filter:drop-shadow(0 3px 5px #22446e38)}.marker svg{width:33px;height:42px;fill:var(--blue);stroke:#fff;stroke-width:1.7}.marker.selected svg{width:42px;height:54px;fill:#154dbb}.marker-label{position:absolute;top:40px;left:50%;transform:translateX(-50%);background:white;border-radius:5px;padding:4px 7px;border:1px solid #e3ebf1;font-size:10px;font-weight:770;white-space:nowrap;box-shadow:0 3px 7px #19314f14;color:#34506d}.marker.selected .marker-label{top:52px;color:#1b4bac}.detail{position:absolute;z-index:8;width:355px;right:77px;bottom:35px;background:#fff;border:1px solid #e2eaf1;border-radius:16px;box-shadow:0 14px 44px #1a365a29;overflow:hidden}.detail[hidden]{display:none}.detail-top{padding:20px 20px 18px;border-bottom:1px solid #eff2f6}.detail-kicker{font-size:10px;color:var(--blue);font-weight:740;letter-spacing:.3px;display:flex;gap:6px;align-items:center}.detail-close{position:absolute;top:13px;right:14px;width:30px;height:30px;border-radius:8px;color:#8596aa;font-size:22px}.detail-close:hover{background:#f4f7fa}.detail-title{font-size:21px;margin-top:9px;letter-spacing:-.65px;font-weight:820;line-height:1.25;padding-right:28px}.detail-alt{font-size:12px;color:#8796a9;margin-top:6px}.detail-area{font-size:11px;color:#8796a9;margin-top:10px}.detail-warning{color:#a0aab5;font-size:10.5px;line-height:1.5;margin-top:8px}.detail-actions{padding:14px 18px 10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail-actions button{height:42px;border-radius:9px;font-weight:760;font-size:12px;display:flex;align-items:center;justify-content:center;gap:7px}.detail-actions svg{width:17px;height:17px}.primary-action{background:var(--blue);color:white}.secondary-action{background:#edf3fe;color:#2d60c6}.minor-actions{display:flex;align-items:center;gap:4px;padding:0 17px 12px}.minor-actions button{flex:1;color:#70849b;font-size:10px;padding:9px 3px;display:flex;align-items:center;justify-content:center;gap:4px}.minor-actions button:hover{color:var(--blue)}.minor-actions svg{width:13px;height:13px}.out-links{display:flex;align-items:center;gap:5px;border-top:1px solid #eef2f7;padding:12px 16px 14px}.out-links a{flex:1;text-align:center;padding:9px 3px;border:1px solid #e4eaf3;border-radius:8px;color:#5a6c86;text-decoration:none;font-size:10.5px;font-weight:720;white-space:nowrap}.out-links a:hover{border-color:#9ebcf6;color:var(--blue);background:#f5f8ff}.toast{position:absolute;left:50%;bottom:26px;transform:translate(-50%,12px);z-index:40;padding:11px 18px;background:#192a42;color:white;border-radius:9px;box-shadow:0 8px 28px #182c4940;font-size:12px;font-weight:650;opacity:0;pointer-events:none;max-width:90vw;transition:opacity .2s,transform .2s;text-align:center}.toast.show{transform:translate(-50%,0);opacity:1}.about{max-width:min(430px,calc(100vw - 36px));border:0;border-radius:15px;box-shadow:0 24px 75px #102b4780;padding:0;color:var(--ink)}.about::backdrop{background:#16273a8c}.about-head{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid var(--border)}.about-head strong{font-size:21px;letter-spacing:-1px}.about-head strong span{color:var(--blue)}.about-head button{font-size:25px;color:#8090a3}.about #aboutBody{padding:22px;line-height:1.9;font-size:12px;color:#65778c}.about #aboutBody p+p{margin-top:10px}.about #aboutBody strong{color:var(--ink)}.about #aboutBody a{color:var(--blue)}
+@media(max-width:900px){.panel{width:350px}.detail{width:325px;right:68px}.map-status{left:60%}}
+@media(max-width:690px){.app{height:100dvh}.panel{top:12px;left:12px;right:12px;bottom:auto;width:auto;border-radius:14px;max-height:45dvh}.brand-line{height:56px;padding:0 14px}.brand-type{font-size:23px}.brand-product{font-size:10px}.lang-toggle button{font-size:10px;padding:6px 8px}.search-form{height:47px;margin:0 12px;padding:3px 4px 3px 11px}.search-submit{height:39px;width:39px}.search-form input{font-size:12px}.search-tools{padding:6px 13px 9px}.search-tools>span{font-size:9px}.search-tools button{font-size:10px}.tabs{height:40px;padding:0 15px;gap:21px}.tabs button{font-size:11px}.panel-scroll{min-height:0;max-height:calc(45dvh - 185px)}.panel-bottom{display:none}.panel-headline{padding:12px 16px 6px}.panel-headline h1{font-size:16px;margin-top:4px}.panel-headline p{display:none}.category-bar{padding:6px 14px 8px}.category{padding:6px 9px;font-size:10px}.results-head{margin:4px 16px 0}.place-list{padding:0 7px 9px}.place-row{min-height:59px;padding:8px}.place-icon{width:32px;height:32px;min-width:32px}.place-icon svg{width:17px;height:17px}.place-info strong{font-size:12px}.place-info .foreign{font-size:10px}.place-info .area{display:none}.city-switch{top:auto;bottom:calc(18px + env(safe-area-inset-bottom));right:50%;transform:translateX(50%);padding:4px;border-radius:30px}.city-switch button{padding:10px 17px;border-radius:24px}.map-controls{top:56%;right:12px;padding:3px}.map-controls button{width:37px;height:37px}.detail{width:auto;right:12px;left:12px;bottom:calc(65px + env(safe-area-inset-bottom));border-radius:14px}.detail-top{padding:14px 15px 12px}.detail-title{font-size:18px;margin-top:6px}.detail-alt{margin-top:4px;font-size:11px}.detail-area{margin-top:7px}.detail-warning{font-size:9px;margin-top:6px}.detail-actions{padding:9px 12px 4px}.detail-actions button{height:39px}.minor-actions{padding:0 12px 5px}.out-links{padding:9px 12px 11px}.out-links a{font-size:10px;padding:8px 1px}.app.has-detail .panel-scroll,.app.has-detail .tabs,.app.has-detail .search-tools{display:none}.app.has-detail .panel{max-height:none}.app.has-detail .search-form{margin-bottom:12px}.map-status{left:50%;top:59%;width:230px}.attribution{font-size:8px;bottom:2px;right:4px}.toast{bottom:calc(60px + env(safe-area-inset-bottom));font-size:11px;white-space:normal}.notice{margin:8px 12px 0;padding:8px}.empty{padding:19px}.panel-headline .eyebrow{display:none}}
+@media(max-width:370px){.brand-product{display:none}.search-tools>span{font-size:8px}.lang-toggle button{padding:5px}.tabs{gap:14px}.detail-title{font-size:17px}.minor-actions button{font-size:9px}}
 
 </style>
 </head>
 <body>
-<div class="app" id="app">
-  <div class="map-wrap" id="mapWrap">
-    <div id="map" aria-label="지도 영역"></div>
-    <div class="map-fallback" id="mapFallback" hidden>
-      <div class="fallback-lines"></div>
-      <div class="fallback-center">
-        <span class="fallback-icon" id="fallbackIcon"></span>
-        <strong data-i="mapOffline">지도를 표시하지 못했어요</strong>
-        <p data-i="mapOfflineSub">연결 상태를 확인하세요. 장소 검색과 저장은 계속 사용할 수 있습니다.</p>
-        <button type="button" id="retryMap" class="small-outline" data-i="retry">다시 연결</button>
-      </div>
-    </div>
-    <div class="map-shade" aria-hidden="true"></div>
+<main class="app" id="app">
+  <div class="map-canvas" id="mapCanvas" aria-label="한국 지도" role="application">
+    <div id="tiles" class="tiles"></div>
+    <div id="markers" class="markers"></div>
+  </div>
+  <div class="map-shade" aria-hidden="true"></div>
+  <div class="map-status" id="mapStatus" role="status" hidden>
+    <div class="status-illustration" aria-hidden="true">⌁</div>
+    <strong id="mapStatusTitle">지도를 불러오는 중입니다</strong>
+    <p id="mapStatusText">잠시만 기다려 주세요.</p>
+    <button type="button" class="status-retry" id="retryMap" hidden>다시 불러오기</button>
   </div>
 
-  <aside class="shell" aria-label="장소 탐색 패널">
-    <header class="topbar">
-      <button type="button" class="brand" id="goHome" aria-label="NABI MAP 홈">
-        <span class="brand-emblem" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="brand-word">nabi<span class="brand-dot">.</span></span><span class="brand-map">MAP</span>
-      </button>
-      <div class="topbar-right">
-        <span class="version-mark">BETA 0.4</span>
-        <div class="lang-switch" role="group" aria-label="표시 언어">
-          <button type="button" data-lang="ko" class="active">KO</button><button type="button" data-lang="ja">日本語</button>
+  <aside class="panel" id="panel" aria-label="검색 및 장소 목록">
+    <div class="panel-top">
+      <div class="brand-line">
+        <button class="brand" type="button" id="homeBtn" aria-label="NABI MAP 홈">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="brand-type">nabi<span class="brand-point">.</span></span>
+          <span class="brand-product">map</span>
+        </button>
+        <div class="lang-toggle" aria-label="표시 언어 선택">
+          <button type="button" data-lang="ko" class="active">한국어</button>
+          <button type="button" data-lang="ja">日本語</button>
         </div>
       </div>
-    </header>
-
-    <div class="hero">
-      <div class="hero-topline"><span class="little-line"></span><span data-i="heroEyebrow">THE CITY, YOUR LANGUAGE</span></div>
-      <h1 data-i="heroTitle">다른 언어,<br><span>같은 장소.</span></h1>
-      <p data-i="heroSub">한국어든 일본어든. 찾고 싶은 곳까지 한 번에.</p>
-    </div>
-
-    <div class="search-block">
-      <form class="search-box" id="searchForm" autocomplete="off">
-        <span class="search-icon" id="searchIcon"></span>
-        <input type="search" id="searchInput" aria-label="장소, 주소, 지도 링크 또는 좌표 검색" placeholder="장소, 日本語, 지도 링크, 좌표" spellcheck="false" enterkeyhint="search" maxlength="500" />
-        <button type="button" class="input-clear" id="clearInput" aria-label="검색어 지우기" hidden>×</button>
-        <button class="search-enter" type="submit" id="searchSubmit" aria-label="검색"><span id="enterIcon"></span></button>
+      <form id="searchForm" class="search-form" autocomplete="off" role="search">
+        <span class="search-glass" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span>
+        <input id="searchInput" type="search" placeholder="장소, 주소, 지도 링크 검색" aria-label="장소 검색" enterkeyhint="search" spellcheck="false">
+        <button class="clear-btn" type="button" id="clearBtn" aria-label="검색 초기화" hidden>×</button>
+        <button class="search-submit" type="submit" aria-label="검색"><svg viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></button>
       </form>
-      <div class="search-hint"><span id="hintIcon"></span><span data-i="searchHint">일본어 이름, 지도 공유 링크, 위도·경도까지 인식해요</span></div>
-      <div class="chips" id="chips"></div>
+      <div class="search-tools">
+        <span id="searchHint">한국어 · 日本語 · 좌표 · 지도 URL</span>
+        <button type="button" id="pasteBtn"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="13" height="16" rx="2"/><path d="M9 5.5V3h7v2.5M4 9H3v11a2 2 0 0 0 2 2h9"/></svg><span id="pasteLabel">링크 붙여넣기</span></button>
+      </div>
+      <div class="tabs" role="tablist" aria-label="목록 전환">
+        <button type="button" class="active" data-tab="explore" role="tab" aria-selected="true" id="exploreTab">탐색</button>
+        <button type="button" data-tab="saved" role="tab" aria-selected="false" id="savedTab">저장한 장소 <small id="savedCount"></small></button>
+        <button type="button" data-tab="recent" role="tab" aria-selected="false" id="recentTab">최근 본 장소</button>
+      </div>
     </div>
-
-    <nav class="view-tabs" aria-label="탐색 카테고리">
-      <button type="button" data-view="discover" class="active"><span data-i="tabDiscover">탐색</span></button>
-      <button type="button" data-view="saved"><span data-i="tabSaved">저장한 장소</span><span class="tab-counter" id="savedCount" hidden></span></button>
-      <button type="button" data-view="recent"><span data-i="tabRecent">최근 기록</span></button>
-    </nav>
-
-    <div id="panelScroll" class="panel-scroll" tabindex="0">
-      <div id="panelContent" aria-live="polite"></div>
-    </div>
-
-    <footer class="sidebar-footer">
-      <span class="footer-signal"><span class="signal-dot"></span><span data-i="footerStatus">한국 지역 검색 베타</span></span>
-      <button type="button" id="aboutBtn" data-i="about">서비스 안내</button>
-    </footer>
+    <div class="panel-scroll" id="panelScroll" tabindex="0"><div id="panelBody"></div></div>
+    <div class="panel-bottom"><span class="online-dot"></span><span id="footerText">한국 지도 · 다국어 검색 베타</span><button id="infoBtn" type="button" aria-label="서비스 정보">ⓘ</button></div>
   </aside>
 
-  <div class="map-header" aria-label="지도 위치 선택">
-    <div class="map-city-switch" id="citySwitch">
-      <button type="button" data-city="seoul" data-i="citySeoul">서울</button>
-      <button type="button" data-city="busan" class="active" data-i="cityBusan">부산</button>
-      <button type="button" data-city="jeju" data-i="cityJeju">제주</button>
-    </div>
-    <span class="map-microcopy"><span class="pin-ring"></span><span data-i="mapLabel">EXPLORE SOUTH KOREA</span></span>
+  <div class="city-switch" aria-label="지역 선택">
+    <button type="button" data-city="seoul">서울</button>
+    <button type="button" data-city="busan" class="active">부산</button>
+    <button type="button" data-city="jeju">제주</button>
   </div>
-
-  <div class="map-actions" role="group" aria-label="지도 조작">
-    <button type="button" id="locateBtn" aria-label="현재 위치" title="현재 위치"><span id="locateIcon"></span></button>
-    <div class="control-divider"></div>
-    <button type="button" id="zoomIn" aria-label="확대" title="확대"><span id="plusIcon"></span></button>
-    <button type="button" id="zoomOut" aria-label="축소" title="축소"><span id="minusIcon"></span></button>
-    <div class="control-divider"></div>
-    <button type="button" id="styleBtn" aria-label="지도 스타일 변경" title="지도 스타일"><span id="layersIcon"></span></button>
+  <div class="map-controls" aria-label="지도 조작">
+    <button type="button" id="locateBtn" aria-label="현재 위치" title="현재 위치"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button>
+    <span></span>
+    <button type="button" id="zoomIn" aria-label="지도 확대" title="확대"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button type="button" id="zoomOut" aria-label="지도 축소" title="축소"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
   </div>
-
-  <div class="bottom-map-legend"><span class="legend-line"></span><span data-i="mapClick">지도의 아무 곳이나 선택해 보세요</span></div>
-
-  <section class="place-card" id="placeCard" hidden aria-live="polite"></section>
-
+  <div class="detail" id="detail" hidden aria-live="polite"></div>
+  <div class="attribution" id="attribution">© OpenStreetMap contributors</div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <dialog id="aboutDialog" class="about-dialog">
-    <div class="dialog-heading"><strong>nabi<span>.</span> MAP</strong><button type="button" id="closeDialog" aria-label="닫기" class="close-dialog">×</button></div>
-    <div id="aboutContent"></div>
-  </dialog>
-</div>
+</main>
+<dialog class="about" id="aboutDialog">
+  <div class="about-head"><strong>nabi<span>.</span> map</strong><button id="closeInfo" type="button" aria-label="닫기">×</button></div>
+  <div id="aboutBody"></div>
+</dialog>
 <script>
 const NABI_PLACES = [
 // Busan
@@ -268,261 +134,180 @@ const NABI_PLACES = [
 
 </script>
 <script>
-/* NABI MAP - dependency-free raster map. No WebGL, workers or CORS fetches.
-   Public image tiles are loaded as normal <img> elements, so the map can run
-   from a local file on macOS / Windows. Internet is required for tile images. */
+/* NABI MAP 0.5: native raster map (no WebGL, API key or third-party JS).
+   Only visible tiles are requested. The OSMF tile policy requires attribution,
+   normal browser caching, and a valid Referer for https://tile.openstreetmap.org.
+   For best reliability, host on HTTPS (e.g. GitHub Pages). */
 (function(){
 'use strict';
-const SOURCES=[
- {id:'voyager',url:(z,x,y)=>`https://a.basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}.png`,credit:'© OpenStreetMap contributors · © CARTO'},
- {id:'topo',url:(z,x,y)=>`https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}`,credit:'Tiles © Esri · OpenStreetMap contributors'},
- {id:'street',url:(z,x,y)=>`https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}`,credit:'Tiles © Esri · OpenStreetMap contributors'}
+const sources=[
+ {id:'osm',url:(z,x,y)=>`https://tile.openstreetmap.org/${z}/${x}/${y}.png`,credit:'© OpenStreetMap contributors'},
+ {id:'hot',url:(z,x,y)=>`https://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png`,credit:'© OpenStreetMap contributors · Humanitarian OpenStreetMap Team'}
 ];
-function merc(lat){const a=Math.max(-85.0511,Math.min(85.0511,lat))*Math.PI/180;return (1-Math.log(Math.tan(a)+1/Math.cos(a))/Math.PI)/2;}
-function unmerc(y){return (Math.atan(Math.sinh(Math.PI*(1-2*y)))*180/Math.PI);}
-function limit(x,min,max){return Math.max(min,Math.min(max,x));}
-class RasterMap{
+const mlat=lat=>(1-Math.log(Math.tan(Math.PI/4+Math.max(-85.0511,Math.min(85.0511,lat))*Math.PI/360))/Math.PI)/2;
+const ilat=y=>Math.atan(Math.sinh(Math.PI*(1-2*y)))*180/Math.PI;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+class NABIMap {
  constructor(opts){
-  this.el=document.getElementById(opts.container)||opts.container;
-  this.center=opts.center.slice();this.zoom=opts.zoom||11;this.minZoom=opts.minZoom||5;this.maxZoom=opts.maxZoom||19;
-  this.handlers={};this.markers=[];this.tiles=new Map();this.provider=0;this.loads=0;this.failures=0;this.ready=false;this.dead=false;this.initialized=false;this._generation=0;
-  this.el.replaceChildren();this.el.classList.add('raster-map');
-  this.tilePane=document.createElement('div');this.tilePane.className='raster-tiles';this.el.appendChild(this.tilePane);
-  this.markerPane=document.createElement('div');this.markerPane.className='raster-markers';this.el.appendChild(this.markerPane);
-  this.attribution=document.createElement('div');this.attribution.className='raster-attribution';this.el.appendChild(this.attribution);
-  this.touchZoomRotate={disableRotation(){}};
-  this._bind();this._resizeObs=window.ResizeObserver?new ResizeObserver(()=>this.draw()):null;
-  if(this._resizeObs)this._resizeObs.observe(this.el);
-  window.addEventListener('resize',this._onResize=()=>this.draw());
-  this.draw();
-  this._timeout=setTimeout(()=>{if(!this.ready&&!this.dead)this._switchOnFailure();},6200);
+  this.el=document.getElementById('mapCanvas');this.tilesEl=document.getElementById('tiles');this.markersEl=document.getElementById('markers');
+  this.attribution=document.getElementById('attribution');this.status=document.getElementById('mapStatus');
+  this.statusTitle=document.getElementById('mapStatusTitle');this.statusText=document.getElementById('mapStatusText');this.retry=document.getElementById('retryMap');
+  this.center=[129.065,35.169];this.zoom=12.25;this.source=0;this.loaded=false;this.failed=false;this.gen=0;this.cache=new Map();this.markerDefs=[];
+  this.moveCallback=opts.onMove||(()=>{});this.clickCallback=opts.onClick||(()=>{});
+  this.watch=setTimeout(()=>this.nextSource(),9000);
+  this.retry.addEventListener('click',()=>this.retrySource());this.bind();
+  this.observer=window.ResizeObserver?new ResizeObserver(()=>this.render()):null;this.observer?.observe(this.el);
+  window.addEventListener('resize',()=>this.render());this.render();
  }
- on(event,fn){(this.handlers[event]??=[]).push(fn);return this;}
- once(event,fn){const wrapper=(...args)=>{this.off(event,wrapper);fn(...args)};this.on(event,wrapper);return this;}
- off(event,fn){this.handlers[event]=(this.handlers[event]||[]).filter(x=>x!==fn);return this;}
- emit(event,data){for(const fn of (this.handlers[event]||[]).slice()){try{fn(data)}catch(e){console.error('NABI event error',e)}}}
- _bind(){
-  const box=this.el;let drag=null;let skipClick=false;
-  box.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.raster-marker, .raster-attribution'))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,moved:false};box.setPointerCapture?.(e.pointerId);box.classList.add('dragging');});
-  box.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.lx,dy=e.clientY-drag.ly;drag.lx=e.clientX;drag.ly=e.clientY;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;if(drag.moved){const size=256*Math.pow(2,this.zoom);const wx=((this.center[0]+180)/360*size)-dx;const wy=(merc(this.center[1])*size)-dy;this.center=[((wx/size*360+180)%360+360)%360-180,unmerc(wy/size)];this.draw();}});
-  const end=e=>{if(!drag||e.pointerId!==drag.id)return;skipClick=drag.moved;drag=null;box.classList.remove('dragging');if(skipClick){setTimeout(()=>{skipClick=false;},50)}else{const rect=box.getBoundingClientRect();const p=this._pointToLngLat(e.clientX-rect.left,e.clientY-rect.top);this.emit('click',{lngLat:{lng:p[0],lat:p[1]}});}this.emit('moveend');};
-  box.addEventListener('pointerup',end);box.addEventListener('pointercancel',()=>{drag=null;box.classList.remove('dragging')});
-  box.addEventListener('wheel',e=>{e.preventDefault();this.zoom=limit(this.zoom+(e.deltaY<0?0.5:-0.5),this.minZoom,this.maxZoom);this.draw();this.emit('moveend');},{passive:false});
-  box.addEventListener('dblclick',e=>{e.preventDefault();this.zoomIn();});
- }
- _pointToLngLat(x,y){const size=256*Math.pow(2,this.zoom),centerX=(this.center[0]+180)/360*size,centerY=merc(this.center[1])*size;
-  return [((centerX+x-this.el.clientWidth/2)/size*360+540)%360-180,unmerc((centerY+y-this.el.clientHeight/2)/size)];}
- _toPoint([lon,lat]){const size=256*Math.pow(2,this.zoom);return [(lon-this.center[0])/360*size+this.el.clientWidth/2,(merc(lat)-merc(this.center[1]))*size+this.el.clientHeight/2];}
- _switchOnFailure(){if(this.dead||this.ready)return;clearTimeout(this._timeout);if(this.provider+1<SOURCES.length){this.provider++;this.loads=0;this.failures=0;this._generation++;this.tiles.forEach(img=>img.remove());this.tiles.clear();this.draw();this._timeout=setTimeout(()=>{if(!this.ready)this._switchOnFailure()},5500);}else{this.emit('error',{error:new Error('Map tile providers unavailable')});if(typeof window.NABI_maplibreFailed==='function')window.NABI_maplibreFailed();}}
- draw(){if(this.dead||!this.el.clientWidth||!this.el.clientHeight)return;
-  const w=this.el.clientWidth,h=this.el.clientHeight,z=limit(Math.floor(this.zoom),0,19),scale=Math.pow(2,this.zoom-z),tileSize=256*scale;
-  const cx=(this.center[0]+180)/360*(1<<z),cy=merc(this.center[1])*(1<<z),x1=Math.floor(cx-w/(2*tileSize))-1,x2=Math.ceil(cx+w/(2*tileSize))+1,y1=Math.floor(cy-h/(2*tileSize))-1,y2=Math.ceil(cy+h/(2*tileSize))+1;
-  this.attribution.textContent=SOURCES[this.provider].credit;const desired=new Set(),gen=this._generation;
+ getCenter(){return this.center.slice()}
+ getZoom(){return this.zoom}
+ xyToPoint(lon,lat){const full=256*2**this.zoom;return [(lon-this.center[0])/360*full+this.el.clientWidth/2,(mlat(lat)-mlat(this.center[1]))*full+this.el.clientHeight/2]}
+ pointToLL(x,y){const full=256*2**this.zoom;const wx=(this.center[0]+180)/360*full+(x-this.el.clientWidth/2);const wy=mlat(this.center[1])*full+(y-this.el.clientHeight/2);return [((wx/full*360+180)%360+360)%360-180,ilat(wy/full)]}
+ setView(lon,lat,zoom){this.center=[clamp(lon,123,133),clamp(lat,32,40)];if(zoom!==undefined)this.zoom=clamp(zoom,5,18);this.render();this.moveCallback(this.center,this.zoom)}
+ zoomBy(diff){this.zoom=clamp(this.zoom+diff,5,18);this.render();this.moveCallback(this.center,this.zoom)}
+ setMarkers(list){this.markerDefs=list.slice(0,14);this.renderMarkers()}
+ retrySource(){clearTimeout(this.watch);this.source=0;this.failed=false;this.loaded=false;this.gen++;this.clearTiles();this.status.hidden=true;this.retry.hidden=true;this.render();this.watch=setTimeout(()=>this.nextSource(),7500)}
+ nextSource(){if(this.loaded)return;clearTimeout(this.watch);this.gen++;this.clearTiles();if(this.source<sources.length-1){this.source++;this.loaded=false;this.render();this.watch=setTimeout(()=>this.nextSource(),7500)}else{this.failed=true;this.status.hidden=false;this.statusTitle.textContent=(window.NABI_MESSAGES?.mapError||'지도를 불러올 수 없습니다');this.statusText.textContent=(window.NABI_MESSAGES?.mapErrorSub||'네트워크를 확인하거나 GitHub Pages 주소에서 실행해 주세요.');this.retry.hidden=false}}
+ clearTiles(){for(const el of this.cache.values())el.remove();this.cache.clear()}
+ render(){if(!this.el.clientWidth||!this.el.clientHeight)return;const w=this.el.clientWidth,h=this.el.clientHeight,z=Math.floor(this.zoom),scale=2**(this.zoom-z),sz=256*scale,n=2**z;
+  const cx=(this.center[0]+180)/360*n,cy=mlat(this.center[1])*n;
+  const x1=Math.floor(cx-w/(2*sz)),x2=Math.ceil(cx+w/(2*sz)),y1=Math.floor(cy-h/(2*sz)),y2=Math.ceil(cy+h/(2*sz)),needed=new Set();
+  const gen=this.gen;this.attribution.textContent=sources[this.source].credit;
   for(let x=x1;x<=x2;x++)for(let y=y1;y<=y2;y++){
-   if(y<0||y>=(1<<z))continue;const wrapped=((x%(1<<z))+(1<<z))%(1<<z),key=`${this.provider}/${z}/${x}/${y}`;desired.add(key);
-   let img=this.tiles.get(key);
-   if(!img){img=document.createElement('img');img.className='raster-tile';img.alt='';img.decoding='async';img.draggable=false;
-    img.addEventListener('load',()=>{if(this.dead||gen!==this._generation)return;this.loads++;if(!this.ready){this.ready=true;clearTimeout(this._timeout);this.emit('load');}});
-    img.addEventListener('error',()=>{if(this.dead||gen!==this._generation)return;this.failures++;img.style.visibility='hidden';if(this.failures>=3&&!this.ready)this._switchOnFailure();});
-    this.tiles.set(key,img);this.tilePane.appendChild(img);img.src=SOURCES[this.provider].url(z,wrapped,y);
-   }
-   img.style.width=tileSize+'px';img.style.height=tileSize+'px';img.style.left=(w/2+(x-cx)*tileSize)+'px';img.style.top=(h/2+(y-cy)*tileSize)+'px';
+    if(y<0||y>=n)continue;const wrapped=(x%n+n)%n,key=`${z}/${x}/${y}`;needed.add(key);
+    let img=this.cache.get(key);
+    if(!img){img=document.createElement('img');img.className='tile';img.alt='';img.decoding='async';img.draggable=false;img.referrerPolicy='strict-origin-when-cross-origin';
+      img.onload=()=>{if(gen!==this.gen)return;this.loaded=true;this.failed=false;clearTimeout(this.watch);this.status.hidden=true;this.retry.hidden=true;};
+      img.onerror=()=>{if(gen!==this.gen)return;img.style.visibility='hidden';const errors=[...this.cache.values()].filter(el=>el.style.visibility==='hidden').length;if(!this.loaded&&errors>=2)this.nextSource();};
+      this.cache.set(key,img);this.tilesEl.appendChild(img);img.src=sources[this.source].url(z,wrapped,y);
+    }
+    img.style.width=sz+'px';img.style.height=sz+'px';img.style.left=(w/2+(x-cx)*sz)+'px';img.style.top=(h/2+(y-cy)*sz)+'px';
   }
-  for(const [key,img] of this.tiles){if(!desired.has(key)){img.remove();this.tiles.delete(key)}}
-  for(const mark of this.markers)mark._position();
+  for(const [key,img] of this.cache){if(!needed.has(key)){img.remove();this.cache.delete(key)}}this.renderMarkers();
  }
- getZoom(){return this.zoom;}
- getCenter(){return {lng:this.center[0],lat:this.center[1]};}
- zoomIn(){this.zoom=limit(this.zoom+1,this.minZoom,this.maxZoom);this.draw();return this;}
- zoomOut(){this.zoom=limit(this.zoom-1,this.minZoom,this.maxZoom);this.draw();return this;}
- flyTo(opts){this.jumpTo(opts);return this;}
- jumpTo(opts){if(opts.center)this.center=opts.center.slice();if(Number.isFinite(opts.zoom))this.zoom=limit(opts.zoom,this.minZoom,this.maxZoom);this.draw();this.emit('moveend');return this;}
- setStyle(style){const id=String(style).includes('topo')?'topo':String(style).includes('street')?'street':'voyager';const idx=SOURCES.findIndex(x=>x.id===id);this.provider=idx<0?0:idx;this._generation++;this.loads=0;this.failures=0;this.tiles.forEach(img=>img.remove());this.tiles.clear();this.ready=false;this.draw();this.once('load',()=>this.emit('style.load'));clearTimeout(this._timeout);this._timeout=setTimeout(()=>{if(!this.ready)this._switchOnFailure()},6000);}
- remove(){this.dead=true;clearTimeout(this._timeout);this._resizeObs?.disconnect();window.removeEventListener('resize',this._onResize);this.markers.slice().forEach(m=>m.remove());this.el.replaceChildren();this.tiles.clear();}
+ renderMarkers(){this.markersEl.replaceChildren();const w=this.el.clientWidth,h=this.el.clientHeight;
+  for(const p of this.markerDefs){const [x,y]=this.xyToPoint(p.lon,p.lat);if(x < -60 || x > w+60 || y < -60 || y > h+60)continue;
+   const btn=document.createElement('button');btn.type='button';btn.className='marker'+(p.selected?' selected':'');btn.style.left=x+'px';btn.style.top=y+'px';btn.title=p.name;btn.setAttribute('aria-label',p.name);
+   btn.innerHTML='<svg viewBox="0 0 40 51" aria-hidden="true"><path d="M20 1C9.5 1 1 9.6 1 20.5c0 13 19 29.4 19 29.4S39 33.5 39 20.5C39 9.6 30.5 1 20 1Z"/><circle cx="20" cy="20" r="6.4" fill="white" stroke="none"/></svg>'+(p.selected?`<span class="marker-label">${String(p.name).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}</span>`:'');
+   btn.addEventListener('pointerdown',e=>e.stopPropagation());btn.addEventListener('click',e=>{e.stopPropagation();p.onClick()});this.markersEl.appendChild(btn);
+  }
+ }
+ bind(){let drag=null,lastSkip=0;const el=this.el;
+  el.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('button'))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,px:e.clientX,py:e.clientY,moved:false};el.setPointerCapture?.(e.pointerId);el.classList.add('dragging')});
+  el.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.px,dy=e.clientY-drag.py;drag.px=e.clientX;drag.py=e.clientY;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;if(drag.moved){const sz=256*2**this.zoom;this.center[0]=clamp(this.center[0]-dx/sz*360,123,133);this.center[1]=clamp(ilat(mlat(this.center[1])-dy/sz),32,40);this.render()}});
+  el.addEventListener('pointerup',e=>{if(!drag||e.pointerId!==drag.id)return;const moved=drag.moved;drag=null;el.classList.remove('dragging');if(moved){lastSkip=Date.now();this.moveCallback(this.center,this.zoom)}else if(Date.now()-lastSkip>80){const r=el.getBoundingClientRect();const [lon,lat]=this.pointToLL(e.clientX-r.left,e.clientY-r.top);this.clickCallback(lat,lon)}});
+  el.addEventListener('pointercancel',()=>{drag=null;el.classList.remove('dragging')});
+  el.addEventListener('wheel',e=>{e.preventDefault();this.zoomBy(e.deltaY<0?.4:-.4)},{passive:false});
+  el.addEventListener('dblclick',e=>{e.preventDefault();this.zoomBy(1)});
+ }
 }
-class RasterMarker{
- constructor(opts={}){this.el=opts.element||document.createElement('div');this.lngLat=[0,0];this.map=null;}
- setLngLat(coords){this.lngLat=coords.slice();return this;}
- addTo(map){this.map=map;this.el.classList.add('raster-marker');map.markerPane.appendChild(this.el);map.markers.push(this);this._position();return this;}
- _position(){if(!this.map)return;const [x,y]=this.map._toPoint(this.lngLat);this.el.style.left=x+'px';this.el.style.top=y+'px';}
- remove(){this.el.remove();if(this.map){this.map.markers=this.map.markers.filter(m=>m!==this);this.map=null;}}
-}
-window.maplibregl={Map:RasterMap,Marker:RasterMarker};
+window.NABIMap=NABIMap;
 })();
 
 </script>
 <script>
-(() => {
+(function(){
 'use strict';
-const $ = id => document.getElementById(id);
-const ICON = {
-  search:'<circle cx="10.6" cy="10.6" r="6.6"/><path d="m16 16 4.3 4.3"/>',
-  arrow:'<path d="M4 12h16m-7-7 7 7-7 7"/>',
-  arrowUp:'<path d="M12 19V5m-6 6 6-6 6 6"/>',
-  pin:'<path d="M20 10c0 5.2-8 12-8 12S4 15.2 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.7"/>',
-  compass:'<circle cx="12" cy="12" r="9"/><path d="m15.9 8.1-2 5.8-5.8 2 2-5.8 5.8-2Z"/>',
-  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-5 5-5 13 0 18m0-18c5 5 5 13 0 18"/>',
-  link:'<path d="M9 15 15 9M7.7 9.8l-1 1a4.2 4.2 0 0 0 5.9 5.9l1-1M16.3 14.2l1-1a4.2 4.2 0 0 0-5.9-5.9l-1 1"/>',
-  copy:'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
-  bookmark:'<path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z"/>',
-  saved:'<path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z"/><path d="m9 10 2 2 4-4"/>',
-  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v6l3 2"/>',
-  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/>',
-  check:'<path d="m4 12 5 5L20 6"/>',
-  external:'<path d="M14 4h6v6m0-6-9 9"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/>',
-  layers:'<path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 5 9 5 9-5"/>',
-  plus:'<path d="M5 12h14M12 5v14"/>',minus:'<path d="M5 12h14"/>',
-  locate:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3"/>',
-  spark:'<path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Zm7 14 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/>',
-  train:'<rect x="6" y="3" width="12" height="15" rx="4"/><path d="M6 10h12M8 21l2-3m6 3-2-3M10 14h.01M14 14h.01"/>',
-  beach:'<path d="M2 17c3-3 5-3 8 0s5 3 8 0 3-3 4-3M3 21c3-3 5-3 8 0s5 3 8 0"/><path d="M12 4v8m-6 0c1-5 9-8 12-4"/>',
-  sight:'<path d="M4 21h16M6 21V9l6-5 6 5v12M9 21v-7h6v7"/>',
-  city:'<path d="M3 21V8l7-4v17M10 12h11v9M6.5 10h.01M6.5 14h.01M6.5 18h.01M14 15h3"/>',
-  airplane:'<path d="M22 2 12 12m10-10-7 20-4-9-9-4L22 2Z"/>',
-  nature:'<path d="m2 21 7-13 4 6 3-4 6 11H2ZM7 4l2-2 2 2"/>',
-  basket:'<path d="M4 10 6 4h12l2 6-2 2-3-2-3 2-3-2-3 2-2-2ZM6 12v9h12v-9"/>',
-  book:'<path d="M4 5h8a3 3 0 0 1 3 3v13H6a2 2 0 0 1-2-2V5Zm11 3c0-2 1-3 3-3h2v16h-5"/>',
-  share:'<path d="M12 16V3m0 0-4.5 4.5M12 3l4.5 4.5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
-  route:'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h5a5 5 0 0 0 0-10H9"/>',
-  alert:'<path d="M12 3 2 21h20L12 3Zm0 7v4m0 4h.01"/>',
-  coordinates:'<path d="M12 3v18M3 12h18M7 7h.01M17 17h.01"/>',
-  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 16-5 16 0"/>'
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s.,·‐ー\-_/()\[\]]/g,'');
+const isKorea=(lat,lon)=>Number.isFinite(lat)&&Number.isFinite(lon)&&lat>=32.4&&lat<=39.5&&lon>=124&&lon<=132;
+const messages={
+ ko:{placeholder:'장소, 주소, 지도 링크 검색',hint:'한국어 · 日本語 · 좌표 · 지도 URL',paste:'링크 붙여넣기',explore:'탐색',saved:'저장한 장소',recent:'최근 본 장소',footer:'한국 지도 · 다국어 검색 베타',headline:'어디로 가시나요?',intro:'한국어와 일본어, 어느 쪽으로 검색해도 괜찮아요.',popular:'이 지역의 추천 장소',result:'검색 결과',resultCount:'개',categoryAll:'전체',station:'지하철·기차',sight:'명소',beach:'바다·자연',savedEmpty:'저장한 장소가 없어요',recentEmpty:'최근 본 장소가 없어요',emptyDesc:'마음에 드는 장소를 선택하고 저장해 보세요.',recentDesc:'장소를 선택하면 최근 목록에 표시돼요.',noResult:'장소를 찾지 못했어요',noResultDesc:'다른 표기 또는 한국어 공식 이름으로 검색해 보세요.',tryOnline:'추가 장소를 찾는 중…',onlineFail:'온라인 검색에 연결되지 않아 등록된 장소만 표시했어요.',reference:'참고 위치',online:'공개 지도 데이터',coordinate:'좌표 위치',mapCenter:'지도 화면의 중심 좌표',approx:'위치는 참고용이며 실제 출입구와 다를 수 있어요.',mapCenterWarn:'공유 지도의 중심 좌표예요. 특정 장소로 확인된 위치는 아니에요.',route:'길찾기',save:'저장하기',unsave:'저장됨',share:'공유',copy:'좌표 복사',naver:'네이버 지도',kakao:'카카오 지도',google:'Google 지도',current:'현재 위치',mapClick:'지도에서 선택한 위치',coords:'좌표로 찾은 위치',resultNote:'오픈 지도 검색 결과는 시설 입구를 보장하지 않아요.',mapError:'지도를 불러올 수 없어요',mapErrorSub:'인터넷을 확인하거나 GitHub Pages의 HTTPS 주소로 실행해 주세요.',linkShort:'단축 지도 링크는 직접 해석할 수 없어요. 원본 주소나 장소명을 입력해 주세요.',linkUnknown:'이 링크에 좌표나 장소 정보가 없어요. 원본 링크 또는 이름으로 검색해 주세요.',pasteDenied:'자동 붙여넣기가 제한됐어요. 검색창을 눌러 직접 붙여넣어 주세요.',locationFail:'현재 위치를 가져올 수 없어요. 위치 권한과 HTTPS 연결을 확인해 주세요.',copyDone:'복사했어요.',copyFail:'복사할 수 없어요. 브라우저 권한을 확인해 주세요.',savedDone:'장소를 저장했어요.',savedRemove:'저장을 해제했어요.',shareDone:'공유 링크를 복사했어요.',clearRecent:'기록 비우기',clearDone:'최근 기록을 지웠어요.',about:'<p><strong>NABI MAP Beta 0.5</strong> — 한국어·일본어 장소 검색과 지도 링크 연결을 실험하는 웹 지도입니다.</p><p><strong>지도:</strong> OpenStreetMap 표준 지도 타일. 별도 API 키 없이 볼 수 있으나 네트워크, 사이트 출처 정책, 제공처 이용 제한에 영향을 받을 수 있습니다. <strong>검색:</strong> 주요 장소 로컬 별칭 사전과 Photon 공개 데모 API를 사용합니다. 데모 API는 정상 동작을 보장하지 않습니다.</p><p><strong>정확도:</strong> 장소별 참고 좌표가 실제 출입구와 다를 수 있습니다. 지도 링크에 포함된 중심 좌표는 특정 가게의 공식 위치를 뜻하지 않습니다. 길찾기는 카카오맵을 비롯한 외부 앱에서 처리합니다.</p><p>저장 데이터는 브라우저에만 보관됩니다. 정식 서비스 출시 전에는 상용 장소 검색 API와 안정적인 지도 제공 계약이 필요합니다.</p><p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a></p>'},
+ ja:{placeholder:'場所・住所・地図リンクを検索',hint:'日本語 · 한국어 · 座標 · 地図URL',paste:'リンクを貼り付け',explore:'探す',saved:'保存した場所',recent:'最近見た場所',footer:'韓国の地図 · 多言語検索ベータ',headline:'どこへ行きますか？',intro:'日本語でも韓国語でも、同じ場所を探せます。',popular:'このエリアのおすすめ',result:'検索結果',resultCount:'件',categoryAll:'すべて',station:'駅・鉄道',sight:'観光名所',beach:'海・自然',savedEmpty:'保存した場所はありません',recentEmpty:'閲覧履歴はありません',emptyDesc:'場所を選んで保存してみましょう。',recentDesc:'場所を選ぶと履歴に残ります。',noResult:'場所が見つかりません',noResultDesc:'別の表記、または韓国語の正式名称で検索してください。',tryOnline:'追加の場所を検索しています…',onlineFail:'オンライン検索に接続できないため、登録済みの場所のみ表示しています。',reference:'参考位置',online:'公開地図データ',coordinate:'座標位置',mapCenter:'地図の中心座標',approx:'参考位置のため、実際の入口とは異なる場合があります。',mapCenterWarn:'共有地図の中心座標です。特定の施設の位置とは限りません。',route:'経路案内',save:'保存する',unsave:'保存済み',share:'共有',copy:'座標コピー',naver:'NAVER Map',kakao:'Kakao Map',google:'Google Maps',current:'現在地',mapClick:'地図で選択した位置',coords:'座標で指定した位置',resultNote:'地図検索の位置は施設の入口を保証しません。',mapError:'地図を表示できません',mapErrorSub:'ネットワークをご確認いただくか、GitHub PagesのHTTPSアドレスから開いてください。',linkShort:'短縮URLは直接解析できません。元のURLや場所名を入力してください。',linkUnknown:'このリンクに座標や場所名が見つかりません。元のURLまたは名前を入力してください。',pasteDenied:'クリップボードが使えません。検索欄に直接貼り付けてください。',locationFail:'現在地を取得できません。位置情報の許可とHTTPS接続をご確認ください。',copyDone:'コピーしました。',copyFail:'コピーできません。ブラウザーの設定をご確認ください。',savedDone:'保存しました。',savedRemove:'保存を解除しました。',shareDone:'共有リンクをコピーしました。',clearRecent:'履歴を削除',clearDone:'履歴を削除しました。',about:'<p><strong>NABI MAP Beta 0.5</strong> — 日韓の地名検索と地図リンクを繋ぐウェブ地図です。</p><p><strong>地図:</strong> OpenStreetMapタイルを利用。APIキーは不要ですが、ネットワークや提供元の利用規約に依存します。<strong>検索:</strong> 地名辞書とPhoton公開デモAPIを利用しています。</p><p><strong>精度:</strong> 参考座標は施設の実際の入口と異なる場合があります。共有地図の中心点は特定の施設の位置とは限りません。経路案内は外部の地図サービスで行います。</p><p>保存情報はこのブラウザー内にのみ保管されます。正式サービスには独立した検索API等の整備が必要です。</p><p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a></p>'}
 };
-const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[name]||ICON.pin}</svg>`;
-const esc = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm = s => String(s??'').normalize('NFKC').toLocaleLowerCase().replace(/[\p{P}\p{S}\s]/gu,'');
-const realNum = n => Number.isFinite(Number(n));
-const isKR = (lat,lon) => Number.isFinite(lat)&&Number.isFinite(lon)&&lat>=32.7&&lat<=39.5&&lon>=124.5&&lon<=131.1;
-const read = (key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
-const save = (key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}catch{}};
-const cityViews={busan:[129.078,35.170,11.6],seoul:[126.992,37.562,11.5],jeju:[126.565,33.465,10.2]};
-const featured={busan:['busan-uni','haeundae','seomyeon','gwangalli'],seoul:['myeongdong','gyeongbok','hongdae','seoul-station'],jeju:['jeju-airport','seongsan','hamdeok','hallasan']};
-const byId = new Map(NABI_PLACES.map(p=>[p.id,p]));
-const tr={
- ko:{heroEyebrow:'A BETTER WAY TO FIND PLACES',heroTitle:'어디로 갈까요? <span>어느 언어든.</span>',heroSub:'한국어 · 日本語 · 지도 링크를 한 번에 검색하세요.',placeholder:'장소, 日本語, 지도 링크, 좌표',searchHint:'장소명 · 공유 링크 · 위도·경도를 검색할 수 있어요',tabDiscover:'탐색',tabSaved:'저장한 장소',tabRecent:'최근 기록',footerStatus:'한국 지역 검색 베타',about:'서비스 안내',citySeoul:'서울',cityBusan:'부산',cityJeju:'제주',mapLabel:'EXPLORE KOREA',mapClick:'지도의 아무 곳이나 선택해 보세요',mapOffline:'지도를 표시하지 못했어요',mapOfflineSub:'연결 상태를 확인하세요. 장소 검색과 저장은 계속 사용할 수 있습니다.',retry:'다시 연결',chipSeoul:'明洞',chipBusan:'부산대역',chipLink:'링크 붙여넣기',chipCoords:'좌표 검색',welcomeKicker:'QUICK START',welcomeTitle:'검색 하나로, 어디든.',welcomeText:'한국어와 日本語, 같은 장소를 찾아 연결해요.',tipLink:'지도 링크',tipLinkSub:'주소를 붙여넣으세요',tipCoords:'좌표 찾기',tipCoordsSub:'위도, 경도도 검색',popular:'이 지역에서 찾아보기',popularNote:'탭하면 위치를 확인할 수 있어요',resultTitle:'검색 결과',results:'개의 장소',loading:'실제 장소를 추가 검색하는 중',onlineFail:'실시간 검색에 연결되지 않아 등록된 장소만 표시해요.',noResult:'검색 결과를 찾지 못했어요',noResultSub:'한국어 공식 명칭이나 다른 표기를 넣어 보세요.',emptySaved:'저장한 장소가 없어요',emptySavedSub:'지도에서 장소를 선택하고 저장을 눌러 주세요.',emptyRecent:'최근 기록이 없어요',emptyRecentSub:'장소를 선택하면 이곳에 기록이 남아요.',emptyAction:'추천 장소 보기',savedTitle:'저장한 장소',recentTitle:'최근 본 장소',clearRecent:'기록 삭제',labelReference:'참고 위치',labelOSM:'OpenStreetMap 검색',labelPoint:'지도 지정 위치',labelLink:'지도 링크에서 추출',labelLinkCenter:'공유 지도의 중심점',labelCoordinate:'직접 입력한 좌표',noteReference:'참고 좌표예요. 이동 전 실제 위치를 확인해 주세요.',noteLinkCenter:'지도 화면 중심 좌표입니다. 특정 매장 위치로 확정된 것은 아니에요.',noteOSM:'공개 지도 데이터에 기반해요. 현장에서 위치를 확인하세요.',noteOther:'좌표를 기준으로 표시합니다.',direction:'길찾기',saved:'저장됨',save:'장소 저장',share:'공유',copy:'좌표 복사',address:'주소/지역',external:'다른 지도에서 열기',naver:'네이버 검색',kakao:'카카오 지도',google:'Google 지도',toastSaved:'장소를 저장했어요',toastRemoved:'저장을 해제했어요',toastCopied:'클립보드에 복사했어요',toastShare:'공유 내용을 복사했어요',toastHistory:'최근 기록을 삭제했어요',toastClipboard:'클립보드를 사용할 수 없어요',toastGeoloc:'현재 위치를 가져오지 못했어요. 위치 권한을 확인해 주세요.',toastOffline:'지도 연결을 확인해 주세요.',toastNoLink:'현재 브라우저에서 클립보드 읽기가 어려워요. 직접 붙여넣어 주세요.',toastUnsupported:'이 단축 링크는 직접 해석할 수 없어요. 장소명이나 원본 URL을 검색해 주세요.',toastNoCoords:'이 지도 링크에는 확인 가능한 좌표가 없어요. 장소명으로 검색해 주세요.',unsupportedTitle:'링크에서 위치를 확인할 수 없어요',unsupportedText:'일부 단축 링크와 장소 ID만 포함된 URL은 서버 연동 없이 해석할 수 없어요. 장소 이름이나 좌표를 넣어 주세요.',sourceNote:'참고 위치는 실제 건물 입구와 다를 수 있습니다.',aboutText:'<p><strong>다른 언어, 같은 장소.</strong> NABI MAP은 한일 장소 검색 및 지도 링크 전환을 실험하는 베타입니다. 주요 지명은 오프라인 참고 사전에서도 검색하고, 추가 장소는 Photon 공개 데모 검색 서비스가 연결되면 조회합니다.</p><p><strong>링크 변환 범위</strong> 카카오맵 좌표 링크, Google Maps의 좌표 및 일부 공유 URL, 네이버 지도 좌표가 포함된 링크를 읽습니다. 단축 주소와 장소 ID만 있는 링크는 정확한 위치를 자동으로 복원하지 못할 수 있습니다.</p><p><strong>정확도 안내</strong> 추천 장소는 참고 좌표이며 실제 출입구 위치가 아닐 수 있습니다. 지도 링크의 중심점은 장소의 공식 좌표와 다를 수 있어 구분해 표시합니다.</p><p><strong>데이터</strong> 지도: CARTO Voyager / Esri Topo (OpenStreetMap 기여자 등). 온라인 검색: Photon(Komoot 공개 데모, 가용성 보장 없음). 저장 기록은 현재 브라우저 안에만 보관됩니다. 외부 지도의 경로는 해당 서비스가 계산합니다.</p><p>정식 공개 전에 상용 검색 API, 데이터 검증 및 서버 구성이 필요합니다. <a href="https://carto.com/" target="_blank" rel="noopener">지도 데이터 제공처</a></p>'},
- ja:{heroEyebrow:'A BETTER WAY TO FIND PLACES',heroTitle:'行きたい場所へ、<span>言葉を越えて。</span>',heroSub:'日本語・한국어・地図リンクをひとつの検索欄で。',placeholder:'場所・한국어・地図リンク・座標',searchHint:'日本語の地名、共有リンク、緯度・経度に対応',tabDiscover:'探す',tabSaved:'保存した場所',tabRecent:'履歴',footerStatus:'韓国の地図検索 · ベータ版',about:'サービスについて',citySeoul:'ソウル',cityBusan:'釜山',cityJeju:'済州',mapLabel:'EXPLORE KOREA',mapClick:'地図上の場所を選んでみてください',mapOffline:'地図を表示できません',mapOfflineSub:'接続をご確認ください。検索や保存は引き続き利用できます。',retry:'再接続',chipSeoul:'明洞',chipBusan:'釜山大学駅',chipLink:'リンクを貼り付け',chipCoords:'座標を検索',welcomeKicker:'QUICK START',welcomeTitle:'検索はひとつで。',welcomeText:'韓国語でも日本語でも、同じ場所にたどり着けます。',tipLink:'地図リンク',tipLinkSub:'URLを貼り付ける',tipCoords:'座標検索',tipCoordsSub:'緯度・経度で探す',popular:'このエリアの人気スポット',popularNote:'選ぶと地図へ移動します',resultTitle:'検索結果',results:'件',loading:'地図データを追加検索中',onlineFail:'オンライン検索に接続できません。登録済みのスポットを表示しています。',noResult:'場所が見つかりませんでした',noResultSub:'正式名称や別の表記でお試しください。',emptySaved:'保存した場所はありません',emptySavedSub:'場所を選んで保存ボタンを押してください。',emptyRecent:'まだ履歴がありません',emptyRecentSub:'場所を選ぶとここに残ります。',emptyAction:'おすすめを見る',savedTitle:'保存した場所',recentTitle:'最近見た場所',clearRecent:'履歴を削除',labelReference:'参考位置',labelOSM:'OpenStreetMap 検索',labelPoint:'地図で指定',labelLink:'地図リンクの座標',labelLinkCenter:'共有地図の中心位置',labelCoordinate:'入力した座標',noteReference:'参考座標です。実際の入口とは異なる場合があります。',noteLinkCenter:'地図の中心位置であり、施設の正確な位置とは限りません。',noteOSM:'公開地図データに基づきます。現地でご確認ください。',noteOther:'座標を基準に表示しています。',direction:'経路案内',saved:'保存済み',save:'場所を保存',share:'共有',copy:'座標をコピー',address:'住所・地域',external:'ほかの地図で開く',naver:'NAVERで検索',kakao:'Kakao Map',google:'Google Maps',toastSaved:'保存しました',toastRemoved:'保存を解除しました',toastCopied:'コピーしました',toastShare:'共有内容をコピーしました',toastHistory:'履歴を削除しました',toastClipboard:'クリップボードを利用できません',toastGeoloc:'現在地を取得できません。位置情報の許可をご確認ください。',toastOffline:'地図への接続をご確認ください。',toastNoLink:'クリップボードを読み取れません。直接貼り付けてください。',toastUnsupported:'この短縮URLは解析できません。場所名か元のURLを入力してください。',toastNoCoords:'このURLには座標がありません。地名で検索してください。',unsupportedTitle:'場所の座標を確認できません',unsupportedText:'短縮URLや場所IDだけのリンクは、サーバー連携なしでは解析できない場合があります。名称または座標を入力してください。',sourceNote:'参考座標は実際の建物入口と異なる場合があります。',aboutText:'<p><strong>言葉が違っても、同じ場所へ。</strong> NABI MAPは韓国語・日本語の地名検索と地図リンクの変換を試すベータ版です。主な地点はローカル辞書、追加地点はPhotonの公開デモサービスを利用します。</p><p><strong>リンク対応</strong> Kakao MapやGoogle Mapsなどの座標を含む一部のURLを読み取ります。短縮URLや場所IDだけのリンクは位置を特定できません。</p><p><strong>精度</strong> 登録地点の座標は参考値です。実際の建物入口とは異なる場合があります。地図中心の座標と施設座標は区別して表示します。</p><p><strong>データ</strong> CARTO Voyager / Esri Topo、Photon (公開デモ)。保存情報はブラウザ内にのみ保存されます。経路は外部の地図サービスで計算します。</p><p>正式公開には専用APIとサーバー運用が必要です。 <a href="https://carto.com/" target="_blank" rel="noopener">地図データ提供元</a></p>'}
-};
-const cleanPlace=p=>{if(!p||!realNum(p.lat)||!realNum(p.lon))return null;let lat=Number(p.lat),lon=Number(p.lon);if(!isKR(lat,lon))return null;return {id:String(p.id||'loc-'+lat+'-'+lon).slice(0,90),ko:String(p.ko||'').slice(0,140),ja:String(p.ja||'').slice(0,140),lat,lon,type:String(p.type||'generic'),area:String(p.area||'').slice(0,180),aliases:Array.isArray(p.aliases)?p.aliases:[],source:String(p.source||'coordinate'),approximate:p.approximate!==false};};
-const state={lang:read('nabi03-lang','ko'),view:'discover',city:'busan',query:'',searched:false,results:[],selected:null,loading:false,status:'',favorites:[],recent:[],map:null,ready:false,markers:[],selectedMarker:null,userMarker:null,dark:false,toastTimer:0,requestSeq:0,searchCache:new Map(),mapAttempt:0};
-state.lang=['ko','ja'].includes(state.lang)?state.lang:'ko';
-state.favorites=(Array.isArray(read('nabi03-saved',[]))?read('nabi03-saved',[]):[]).map(cleanPlace).filter(Boolean).slice(0,100);
-state.recent=(Array.isArray(read('nabi03-recent',[]))?read('nabi03-recent',[]):[]).map(cleanPlace).filter(Boolean).slice(0,40);
-const t=k=>tr[state.lang][k]||k;
-const name=p=>state.lang==='ja'?(p.ja||p.ko||t('labelPoint')):(p.ko||p.ja||t('labelPoint'));
-const altName=p=>state.lang==='ja'?p.ko:p.ja;
-const cstr=p=>`${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}`;
-const sourceTag=p=>p.source==='demo'?t('labelReference'):p.source==='photon'?t('labelOSM'):p.source==='link-center'?t('labelLinkCenter'):p.source==='link'?t('labelLink'):p.source==='pin'?t('labelPoint'):t('labelCoordinate');
-const sourceNote=p=>p.source==='demo'?t('noteReference'):p.source==='link-center'?t('noteLinkCenter'):p.source==='photon'?t('noteOSM'):t('noteOther');
-const placeIcon=p=>p.type==='station'?'train':p.type==='airport'?'airplane':p.type==='beach'?'beach':p.type==='sight'||p.type==='university'?'sight':p.type==='nature'||p.type==='park'?'nature':p.type==='market'?'basket':p.type==='district'?'city':'pin';
-const saved=p=>state.favorites.some(x=>x.id===p.id);
-const itemHTML=p=>`<button type="button" class="place-item ${state.selected?.id===p.id?'selected':''}" data-place="${esc(p.id)}"><span class="place-glyph">${icon(placeIcon(p))}</span><span class="place-item-info"><strong>${esc(name(p))}</strong><span>${esc(altName(p)||p.area||cstr(p))}</span><span class="source-small">${esc(p.area||sourceTag(p))}</span></span><span class="place-arrow">${icon('arrow')}</span></button>`;
-function hydrateIcons(){[['searchIcon','search'],['enterIcon','arrow'],['hintIcon','spark'],['fallbackIcon','globe'],['locateIcon','locate'],['plusIcon','plus'],['minusIcon','minus'],['layersIcon','layers']].forEach(([id,i])=>$(id).innerHTML=icon(i));}
-function translate(){document.documentElement.lang=state.lang;document.title=state.lang==='ja'?'NABI MAP — 言葉が違っても、同じ場所へ':'NABI MAP — 다른 언어, 같은 장소';document.querySelectorAll('[data-i]').forEach(el=>{el.innerHTML=t(el.dataset.i)});$('searchInput').placeholder=t('placeholder');document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===state.lang));$('aboutContent').innerHTML=t('aboutText');renderChips();renderPanel();renderDetail();updateMarkers();}
-function renderChips(){let chips=[['chipSeoul','明洞'],['chipBusan','부산대역'],['chipLink','paste'],['chipCoords','35.2293, 129.0896']];$('chips').innerHTML=chips.map(([l,v])=>`<button class="chip" data-chip="${esc(v)}" type="button">${l==='chipLink'?icon('link'):l==='chipCoords'?icon('coordinates'):''}${esc(t(l))}</button>`).join('');}
-function titleSection(h,note=''){return `<div class="section-header"><h2>${esc(h)}</h2><span class="aside-note">${esc(note)}</span></div>`;}
-function renderPanel(){let html='';const content=$('panelContent');if(state.view==='discover'){
- if(!state.searched){
-  html=`<div class="featured-box"><div class="featured-kicker">${t('welcomeKicker')}</div><h2>${esc(t('welcomeTitle'))}</h2><p>${esc(t('welcomeText'))}</p><div class="example-pair"><span>釜山大学駅</span>${icon('arrow')}<span>부산대역</span></div></div><div class="mini-tips"><button class="tip-card" type="button" data-action="paste"><span class="tip-icon">${icon('link')}</span><span><strong>${esc(t('tipLink'))}</strong><small>${esc(t('tipLinkSub'))}</small></span></button><button class="tip-card" type="button" data-action="coord-example"><span class="tip-icon">${icon('coordinates')}</span><span><strong>${esc(t('tipCoords'))}</strong><small>${esc(t('tipCoordsSub'))}</small></span></button></div>`;
-  const picks=featured[state.city].map(id=>byId.get('seed-'+id)).filter(Boolean);
-  html+=titleSection(t('popular'),t('popularNote'))+`<div class="place-list">${picks.map(itemHTML).join('')}</div>`;
- }else{
-  html+=`<div class="result-status">${state.loading?'<span class="inline-loader"></span>':icon(state.status==='error'?'alert':'check')}<span>${esc(state.loading?t('loading'):state.status==='error'?t('onlineFail'):(state.results.length+' '+t('results')))}</span></div>`;
-  html+=titleSection(t('resultTitle'),state.results.length?state.results.length+' '+t('results'):'');
-  html+=state.results.length?`<div class="place-list">${state.results.map(itemHTML).join('')}</div><p class="results-note">${esc(t('sourceNote'))}</p>`:state.loading?'':emptyHTML('search');
-  if(state.status==='unsupported') html=emptyHTML('unsupported');
- }
- }else if(state.view==='saved')html=titleSection(t('savedTitle'),String(state.favorites.length))+ (state.favorites.length?`<div class="place-list">${state.favorites.map(itemHTML).join('')}</div>`:emptyHTML('saved'));
- else html=titleSection(t('recentTitle'),String(state.recent.length))+(state.recent.length?`<div style="text-align:right;padding:0 22px 9px"><button type="button" data-action="clearRecent" style="font-size:10px;color:#67947a;text-decoration:underline">${esc(t('clearRecent'))}</button></div><div class="place-list">${state.recent.map(itemHTML).join('')}</div>`:emptyHTML('recent'));
- content.innerHTML=html;
- $('savedCount').textContent=state.favorites.length;$('savedCount').hidden=!state.favorites.length;
- document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
+const memory=(key,fallback)=>{try{const obj=JSON.parse(localStorage.getItem(key));return obj??fallback}catch{return fallback}};
+const store=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}catch{}};
+const cityCenters={busan:[129.064,35.167,12.35],seoul:[126.986,37.563,12.25],jeju:[126.535,33.493,11.4]};
+const featured={busan:['busan-uni','seomyeon','haeundae','gwangalli','busan-station','gamcheon','jagalchi'],seoul:['myeongdong','gyeongbok','hongdae','seoul-station','seongsu','seoul-tower','gangnam'],jeju:['jeju-airport','hamdeok','seongsan','hallasan']};
+const byId=new Map(NABI_PLACES.map(p=>[p.id,p]));
+const safePlace=p=>p&&isKorea(+p.lat,+p.lon)?{id:String(p.id||'point-'+p.lat+'-'+p.lon).slice(0,110),ko:String(p.ko||'').slice(0,140),ja:String(p.ja||'').slice(0,140),lat:+p.lat,lon:+p.lon,type:p.type||'generic',area:String(p.area||'').slice(0,150),aliases:Array.isArray(p.aliases)?p.aliases:[],source:p.source||'reference',approximate:p.approximate!==false}:null;
+const initialSaved=memory('nabi05-favorites',null)||memory('nabi03-favorites',[]);
+const initialRecent=memory('nabi05-recent',null)||memory('nabi03-recent',[]);
+const state={lang:memory('nabi05-lang',null)||memory('nabi03-lang','ko'),tab:'explore',city:'busan',query:'',category:'all',results:[],searched:false,selected:null,loading:false,networkIssue:false,saved:(Array.isArray(initialSaved)?initialSaved:[]).map(safePlace).filter(Boolean),recent:(Array.isArray(initialRecent)?initialRecent:[]).map(safePlace).filter(Boolean),request:0,remoteCache:new Map(),toastTimer:0};
+const t=k=>(messages[state.lang]||messages.ko)[k]||k;
+const name=p=>p?(state.lang==='ja'?(p.ja||p.ko):(p.ko||p.ja))||t('coords'):'';
+const alt=p=>state.lang==='ja'?p.ko:p.ja;
+const categoryMatch=(p,cat)=>cat==='all'||(cat==='station'?['station','airport'].includes(p.type):cat==='sight'?['sight','district','market','university'].includes(p.type):['beach','nature','park'].includes(p.type));
+function icon(which){const paths={pin:'<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.7"/>',station:'<rect x="5" y="3" width="14" height="15" rx="3"/><path d="M8 21l2-3m6 3-2-3M8 8h8M8 12h8M9 4h6"/>',beach:'<path d="M3 16c2 0 2-2 4-2s2 2 5 2 3-2 5-2 2 2 4 2M3 20c2 0 2-2 4-2s2 2 5 2 3-2 5-2 2 2 4 2M12 3v6M8 8c0-4 8-4 8 0M3 9h18"/>',sight:'<path d="M4 21V9l8-5 8 5v12M2 21h20M8 12h8M8 16h8"/>',airport:'<path d="M2 14l8-2V3a2 2 0 0 1 4 0v9l8 2v3l-8-1v3l3 2v1l-5-1-5 1v-1l3-2v-3l-8 1z"/>',nature:'<path d="M3 20 9 9l4 6 3-4 5 9H3ZM9 9l3-5 4 7"/>',bookmark:'<path d="M6 4h12v17l-6-4-6 4z"/>',bookmarkFill:'<path d="M6 4h12v17l-6-4-6 4z" fill="currentColor"/>',route:'<circle cx="5" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6h7a5 5 0 0 1 0 10H8"/>',copy:'<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/>',share:'<circle cx="18" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="18" cy="19" r="2"/><path d="m7 11 9-5m-9 7 9 5"/>',search:'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>'};return `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[which]||paths.pin}</svg>`}
+let map;
+function translate(){document.documentElement.lang=state.lang;$('searchInput').placeholder=t('placeholder');$('searchHint').textContent=t('hint');$('pasteLabel').textContent=t('paste');$('exploreTab').textContent=t('explore');$('savedTab').innerHTML=`${t('saved')} <small id="savedCount"></small>`;$('recentTab').textContent=t('recent');$('footerText').textContent=t('footer');$('mapStatusTitle').textContent=t('mapError');$('mapStatusText').textContent=t('mapErrorSub');$('aboutBody').innerHTML=t('about');document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('active',el.dataset.lang===state.lang));window.NABI_MESSAGES={mapError:t('mapError'),mapErrorSub:t('mapErrorSub')};render()}
+function currentFeatured(){return (featured[state.city]||[]).map(id=>byId.get('seed-'+id)).filter(Boolean)}
+function makePlaceRow(p){const active=state.selected?.id===p.id;return `<button type="button" class="place-row${active?' active':''}" data-place="${esc(p.id)}"><span class="place-icon">${icon(p.type)}</span><span class="place-info"><strong>${esc(name(p))}</strong><span class="foreign">${esc(alt(p)||p.area||'')}</span><span class="area">${esc(p.area||'')}${p.source==='osm'?' · OSM':''}</span></span><span class="place-chevron">›</span></button>`}
+function categoryButtons(){const cats=[['all','categoryAll'],['station','station'],['sight','sight'],['beach','beach']];return `<div class="category-bar">${cats.map(([v,key])=>`<button type="button" class="category ${state.category===v?'active':''}" data-category="${v}">${esc(t(key))}</button>`).join('')}</div>`}
+function render(){document.querySelectorAll('[data-city]').forEach(el=>el.classList.toggle('active',el.dataset.city===state.city));document.querySelectorAll('[data-tab]').forEach(el=>{const on=el.dataset.tab===state.tab;el.classList.toggle('active',on);el.setAttribute('aria-selected',String(on))});const count=$('savedCount');if(count)count.textContent=state.saved.length?String(state.saved.length):'';$('clearBtn').hidden=!$('searchInput').value.trim();renderPanel();renderDetail();renderMarkers()}
+function renderPanel(){let html='';if(state.tab==='explore'){
+  if(!state.searched){html=`<div class="panel-headline"><div class="eyebrow">NABI MAP</div><h1>${esc(t('headline'))}</h1><p>${esc(t('intro'))}</p></div>${categoryButtons()}<div class="results-head"><h2>${esc(t('popular'))}</h2><span>${state.city==='busan'?'BUSAN':state.city==='seoul'?'SEOUL':'JEJU'}</span></div><div class="place-list">${currentFeatured().filter(p=>categoryMatch(p,state.category)).map(makePlaceRow).join('')}</div>`;}
+  else{html=`<div class="results-head" style="margin-top:21px"><h2>${esc(t('result'))}</h2><span>${state.results.length}${esc(t('resultCount'))}</span></div>${state.networkIssue?`<p class="notice">${esc(t('onlineFail'))}</p>`:''}${state.results.length?`<div class="place-list">${state.results.map(makePlaceRow).join('')}</div>`:`<div class="empty"><span class="empty-mark">${icon('search')}</span><strong>${esc(t('noResult'))}</strong><p>${esc(t('noResultDesc'))}</p></div>`}${state.loading?`<div class="loading-row">${esc(t('tryOnline'))}</div>`:''}`}
+ }else if(state.tab==='saved'){html=`<div class="results-head" style="margin-top:23px"><h2>${esc(t('saved'))}</h2><span>${state.saved.length}</span></div>${state.saved.length?`<div class="place-list">${state.saved.map(makePlaceRow).join('')}</div>`:`<div class="empty"><span class="empty-mark">${icon('bookmark')}</span><strong>${esc(t('savedEmpty'))}</strong><p>${esc(t('emptyDesc'))}</p></div>`}`}
+ else{html=`<div class="results-head" style="margin-top:23px"><h2>${esc(t('recent'))}</h2><button class="list-action" data-action="clear-recent" type="button">${esc(t('clearRecent'))}</button></div>${state.recent.length?`<div class="place-list">${state.recent.map(makePlaceRow).join('')}</div>`:`<div class="empty"><span class="empty-mark">${icon('clock')}</span><strong>${esc(t('recentEmpty'))}</strong><p>${esc(t('recentDesc'))}</p></div>`}`}
+ $('panelBody').innerHTML=html;
 }
-function emptyHTML(which){let typ=which==='saved'?'emptySaved':which==='recent'?'emptyRecent':which==='unsupported'?'unsupportedTitle':'noResult',sub=which==='saved'?'emptySavedSub':which==='recent'?'emptyRecentSub':which==='unsupported'?'unsupportedText':'noResultSub';return `<div class="empty-state"><span class="empty-symbol">${icon(which==='unsupported'?'alert':which==='saved'?'bookmark':which==='recent'?'clock':'search')}</span><strong>${esc(t(typ))}</strong><p>${esc(t(sub))}</p><button type="button" data-action="home">${esc(t('emptyAction'))}</button></div>`;}
-function showToast(str){const node=$('toast');node.textContent=str;node.classList.add('visible');clearTimeout(state.toastTimer);state.toastTimer=setTimeout(()=>node.classList.remove('visible'),2550);}
-async function clipboard(str){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(str);return true}}catch{}try{const ta=document.createElement('textarea');ta.value=str;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();return ok}catch{return false}}
-function storeRecent(p){state.recent=[cleanPlace(p),...state.recent.filter(x=>x.id!==p.id)].filter(Boolean).slice(0,32);save('nabi03-recent',state.recent);}
-function toggleSaved(){const p=state.selected;if(!p)return;if(saved(p)){state.favorites=state.favorites.filter(x=>x.id!==p.id);showToast(t('toastRemoved'))}else{state.favorites=[cleanPlace(p),...state.favorites].filter(Boolean).slice(0,100);showToast(t('toastSaved'))}save('nabi03-saved',state.favorites);renderDetail();renderPanel();}
-function externalLinks(p){const ko=p.ko||p.ja||'위치';const position=cstr(p);return {kakao:'https://map.kakao.com/link/map/'+encodeURIComponent(ko)+','+p.lat+','+p.lon,google:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(position),naver:'https://map.naver.com/p/search/'+encodeURIComponent(ko)};}
-function routeURL(p){return 'https://map.kakao.com/link/to/'+encodeURIComponent(p.ko||p.ja||'목적지')+','+p.lat+','+p.lon;}
-function renderDetail(){const node=$('placeCard'),p=state.selected;$('app').classList.toggle('detail-active',Boolean(p));if(!p){node.hidden=true;node.innerHTML='';return}const urls=externalLinks(p);node.hidden=false;node.innerHTML=`<div class="detail-top"><span class="detail-index">NABI PLACE / ${esc(sourceTag(p))}</span><button class="detail-close" data-detail="close" aria-label="닫기" type="button">×</button></div><div class="detail-content"><div class="detail-category">${icon(placeIcon(p))}<span>${esc(p.area||sourceTag(p))}</span></div><h2 class="detail-title">${esc(name(p))}</h2><p class="detail-subtitle">${esc(altName(p)||cstr(p))}</p><div class="detail-address">${icon('pin')}<span>${esc(p.area||cstr(p))}<br><span style="font-size:10px;color:#96a798">${esc(cstr(p))}</span></span></div><p class="detail-note">${esc(sourceNote(p))}</p><div class="primary-actions"><button class="route-btn" type="button" data-detail="route">${icon('route')}${esc(t('direction'))}</button><button class="save-btn" type="button" data-detail="save">${icon(saved(p)?'saved':'bookmark')}${esc(t(saved(p)?'saved':'save'))}</button></div><div class="secondary-actions"><button type="button" data-detail="copy">${icon('copy')}${esc(t('copy'))}</button><button type="button" data-detail="share">${icon('share')}${esc(t('share'))}</button></div><div class="external-section"><p class="external-title">${esc(t('external'))}</p><div class="external-links"><a href="${esc(urls.kakao)}" target="_blank" rel="noopener noreferrer">${esc(t('kakao'))}</a><a href="${esc(urls.naver)}" target="_blank" rel="noopener noreferrer" title="장소명으로 다시 검색">${esc(t('naver'))}</a><a href="${esc(urls.google)}" target="_blank" rel="noopener noreferrer">${esc(t('google'))}</a></div></div></div>`;}
-function choose(p,move=true){p=cleanPlace(p);if(!p)return;state.selected=p;storeRecent(p);renderDetail();renderPanel();updateMarkers();if(move&&state.ready)state.map.flyTo({center:[p.lon,p.lat],zoom:Math.max(state.map.getZoom(),14.5),duration:1100,essential:true,padding:{left:window.innerWidth>760?290:0,bottom:window.innerWidth<=760?130:0}});}
-function home(){state.view='discover';state.searched=false;state.query='';state.results=[];state.selected=null;state.status='';state.requestSeq++;$('searchInput').value='';$('clearInput').hidden=true;renderPanel();renderDetail();updateMarkers();$('panelScroll').scrollTop=0;}
-function setCity(city){if(!cityViews[city])return;state.city=city;document.querySelectorAll('[data-city]').forEach(el=>el.classList.toggle('active',el.dataset.city===city));updateMarkers();if(state.ready){const c=cityViews[city];state.map.flyTo({center:[c[0],c[1]],zoom:c[2],duration:1050,essential:true});}if(!state.searched)renderPanel();}
-function localMatches(q){const n=norm(q);if(!n)return [];return NABI_PLACES.map(p=>{let names=[p.ko,p.ja,...p.aliases].map(norm);let score=0;for(const word of names){if(word===n)score=Math.max(score,140);else if(word.startsWith(n)&&n.length>1)score=Math.max(score,96);else if(word.includes(n)&&n.length>1)score=Math.max(score,54);else if(n.includes(word)&&word.length>2)score=Math.max(score,22);}if(p.area.startsWith(state.city==='busan'?'부산':state.city==='seoul'?'서울':'제주'))score+=score?2:0;return {p,score};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,9).map(x=>x.p);}
-function customPoint(lat,lon,ko='',source='coordinate',ja=''){return {id:`${source}-${lat.toFixed(5)}-${lon.toFixed(5)}`,lat,lon,ko:ko||`${lat.toFixed(5)}, ${lon.toFixed(5)}`,ja,type:'generic',area:'',aliases:[],source,approximate:true};}
-function coordsFromText(q){const m=q.trim().match(/^\(?\s*(-?\d{1,3}(?:\.\d+)?)\s*[,，\s]+\s*(-?\d{1,3}(?:\.\d+)?)\s*\)?$/);if(!m)return null;let a=Number(m[1]),b=Number(m[2]);return isKR(a,b)?[a,b]:null;}
-function decodeSafe(s){try{return decodeURIComponent(s.replace(/\+/g,' '))}catch{return s}}
-function parseMapURL(raw){let u;try{u=new URL(raw.trim())}catch{return null}if(!/^https?:$/.test(u.protocol))return null;let host=u.hostname.toLowerCase(),path=decodeSafe(u.pathname);const params=u.searchParams;
- function result(lat,lon,label='',source='link'){lat=Number(lat);lon=Number(lon);if(!isKR(lat,lon))return {kind:'unsupported'};return {kind:'point',place:customPoint(lat,lon,(label||'').slice(0,90),source)};}
- function fromText(s){return s?{kind:'text',query:s.slice(0,160)}:{kind:'unsupported'};}
- const latLon=(s)=>{let m=String(s||'').match(/(-?\d{1,3}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)/);return m?[Number(m[1]),Number(m[2])]:null};
- if(host.includes('google.')||host==='maps.app.goo.gl'||host==='goo.gl'){
-  if(host.includes('goo.gl'))return {kind:'unsupported'};
-  let match=decodeSafe(u.href).match(/!3d(-?\d{1,3}\.\d+)!4d(-?\d{1,3}\.\d+)/);if(match)return result(match[1],match[2],path.split('/place/')[1]?.split('/')[0]?.replace(/\+/g,' ')||'','link');
-  const q=params.get('query')||params.get('q')||'';let c=latLon(q);if(c&&isKR(c[0],c[1]))return result(c[0],c[1],'','link');
-  if(q)return fromText(q);
-  const at=path.match(/@(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/);if(at)return result(at[1],at[2],'','link-center');
-  const p=path.split('/place/')[1]?.split('/')[0];if(p)return fromText(p.replace(/\+/g,' '));return {kind:'unsupported'};
- }
- if(host.includes('kakao.com')){
-   const m=path.match(/\/link\/(?:map|to)\/(.*)/);if(m){const bits=m[1].split('/')[0].split(',');if(bits.length>=3){const lat=bits[bits.length-2],lon=bits[bits.length-1];return result(lat,lon,bits.slice(0,-2).join(','),'link')}if(bits.length===2)return result(bits[0],bits[1],'','link');return {kind:'unsupported'}}
-   return fromText(params.get('q')||params.get('query')||'');
- }
- if(host==='naver.me')return {kind:'unsupported'};
- if(host.includes('naver.com')){
-   const c=params.get('c');if(c){const match=latLon(c);if(match)return result(match[1],match[0],'','link-center')}
-   const q=path.match(/\/search\/(.+)/);if(q)return fromText(q[1]);return {kind:'unsupported'};
- }
- if(host==='nabi.map'||host===location.hostname){let lat=params.get('lat'),lon=params.get('lon');if(lat&&lon)return result(lat,lon,params.get('ko')||'','link')}
- return {kind:'unsupported'};
+const isSaved=p=>state.saved.some(q=>q.id===p.id);
+function mapURL(p){return `https://map.kakao.com/link/map/${encodeURIComponent(p.ko||p.ja||'위치')},${p.lat.toFixed(6)},${p.lon.toFixed(6)}`}
+function routeURL(p){return `https://map.kakao.com/link/to/${encodeURIComponent(p.ko||p.ja||'위치')},${p.lat.toFixed(6)},${p.lon.toFixed(6)}`}
+function googleURL(p){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.lat.toFixed(6)+','+p.lon.toFixed(6))}`}
+function naverURL(p){return `https://map.naver.com/p?c=${p.lon.toFixed(6)},${p.lat.toFixed(6)},16,0,0,0,dh`}
+function renderDetail(){const p=state.selected,el=$('detail');$('app').classList.toggle('has-detail',!!p);if(!p){el.hidden=true;el.innerHTML='';return}
+ const message=p.source==='center'?t('mapCenterWarn'):t('approx');el.hidden=false;
+ el.innerHTML=`<div class="detail-top"><div class="detail-kicker">${p.source==='osm'?esc(t('online')):p.source==='center'?esc(t('mapCenter')):esc(t('reference'))}</div><button type="button" class="detail-close" data-detail="close" aria-label="닫기">×</button><h2 class="detail-title">${esc(name(p))}</h2><p class="detail-alt">${esc(alt(p)||'')}</p><p class="detail-area">${esc(p.area||`${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}`)}</p><p class="detail-warning">${esc(message)}</p></div><div class="detail-actions"><button type="button" data-detail="route" class="primary-action">${icon('route')}${esc(t('route'))}</button><button type="button" data-detail="save" class="secondary-action">${icon(isSaved(p)?'bookmarkFill':'bookmark')}${esc(t(isSaved(p)?'unsave':'save'))}</button></div><div class="minor-actions"><button data-detail="copy" type="button">${icon('copy')}${esc(t('copy'))}</button><button data-detail="share" type="button">${icon('share')}${esc(t('share'))}</button></div><div class="out-links"><a target="_blank" rel="noopener noreferrer" href="${esc(mapURL(p))}">${esc(t('kakao'))}</a><a target="_blank" rel="noopener noreferrer" href="${esc(naverURL(p))}" title="지도 중심 좌표로 열기">${esc(t('naver'))}</a><a target="_blank" rel="noopener noreferrer" href="${esc(googleURL(p))}">${esc(t('google'))}</a></div>`;
 }
-function featureToPlace(feature){const coords=feature?.geometry?.coordinates,p=feature?.properties||{};if(!Array.isArray(coords)||coords.length<2)return null;const lon=Number(coords[0]),lat=Number(coords[1]);if(!isKR(lat,lon))return null;const title=String(p.name||p.street||p.city||p.district||'').trim();if(!title)return null;return {id:'photon-'+(p.osm_type||'')+'-'+(p.osm_id||lat+'-'+lon),ko:title,ja:'',lat,lon,type:p.osm_key==='railway'?'station':p.osm_key==='tourism'?'sight':'generic',area:[p.city,p.district,p.state].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(' · '),aliases:[],source:'photon',approximate:false};}
-async function photonSearch(q,seq){const cacheKey=norm(q);if(state.searchCache.has(cacheKey))return state.searchCache.get(cacheKey);const delay=Math.max(0,1250-(Date.now()-(state.lastPhoton||0)));if(delay)await new Promise(resolve=>setTimeout(resolve,delay));if(seq!==state.requestSeq)return [];state.lastPhoton=Date.now();const params=new URLSearchParams({q,limit:'8',lang:state.lang,bbox:'124.5,32.7,131.1,39.5'});const ctrl=new AbortController();const timeout=setTimeout(()=>ctrl.abort(),6500);try{const res=await fetch('https://photon.komoot.io/api/?'+params.toString(),{signal:ctrl.signal});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();const found=(data.features||[]).map(featureToPlace).filter(Boolean);state.searchCache.set(cacheKey,found);return found;}finally{clearTimeout(timeout)}}
-async function runSearch(raw){const q=String(raw??'').trim();if(!q)return;$('searchInput').value=q;state.query=q;state.searched=true;state.view='discover';state.selected=null;state.results=[];state.status='';const seq=++state.requestSeq;state.loading=false;renderDetail();$('panelScroll').scrollTop=0;
- const coords=coordsFromText(q);if(coords){state.results=[customPoint(coords[0],coords[1])];renderPanel();choose(state.results[0]);return}
- let searchText=q;
- if(/^https?:\/\//i.test(q)){
-  const parsed=parseMapURL(q);
-  if(parsed?.kind==='point'){state.results=[parsed.place];renderPanel();choose(parsed.place);return}
-  if(parsed?.kind==='text')searchText=parsed.query;
-  else{state.status='unsupported';renderPanel();showToast(t('toastUnsupported'));return}
- }
- const local=localMatches(searchText);state.results=local;state.loading=true;renderPanel();if(local.length===1)choose(local[0]);
- try{const live=await photonSearch(searchText,seq);if(seq!==state.requestSeq)return;const merged=[...local];for(const p of live){if(merged.some(v=>Math.hypot(v.lat-p.lat,v.lon-p.lon)<0.00032))continue;merged.push(p)}state.results=merged;state.status='ok';}catch{if(seq!==state.requestSeq)return;state.status='error';}finally{if(seq===state.requestSeq){state.loading=false;renderPanel()}}
+function renderMarkers(){if(!map)return;const base=state.searched?state.results.slice(0,12):currentFeatured();const list=base.filter(p=>state.selected?.id!==p.id);if(state.selected)list.push(state.selected);map.setMarkers(list.map(p=>({lat:p.lat,lon:p.lon,name:name(p),selected:state.selected?.id===p.id,onClick:()=>selectPlace(p)})))}
+function toast(s){const el=$('toast');el.textContent=s;el.classList.add('show');clearTimeout(state.toastTimer);state.toastTimer=setTimeout(()=>el.classList.remove('show'),2800)}
+function moveMap(p){if(map)map.setView(p.lon,p.lat,Math.max(map.getZoom(),14.1))}
+function selectPlace(raw,move=true){const p=safePlace(raw);if(!p)return;state.selected=p;state.recent=[p,...state.recent.filter(q=>q.id!==p.id)].slice(0,30);store('nabi05-recent',state.recent);if(move)moveMap(p);render()}
+function clearSelection(){state.selected=null;render()}
+function setCity(key){if(!cityCenters[key])return;state.city=key;state.category='all';state.searched=false;state.results=[];state.selected=null;state.tab='explore';state.query='';$('searchInput').value='';state.request++;map.setView(...cityCenters[key]);render()}
+function localSearch(query){const q=norm(query);if(!q)return [];return NABI_PLACES.map(p=>{let score=0;for(const n of [p.ko,p.ja,...p.aliases]){const w=norm(n);if(!w)continue;if(w===q)score=Math.max(score,100);else if(w.startsWith(q)&&q.length>1)score=Math.max(score,70);else if(w.includes(q)&&q.length>1)score=Math.max(score,40);else if(q.includes(w)&&w.length>2)score=Math.max(score,20)}return {p,score}}).filter(x=>x.score).sort((a,b)=>b.score-a.score).slice(0,9).map(x=>x.p)}
+function point(lat,lon,kind='coordinate',title='',ja=''){return {id:`${kind}-${lat.toFixed(6)}-${lon.toFixed(6)}`,ko:title||t('coords'),ja:ja||'',lat,lon,type:'generic',area:`${lat.toFixed(6)}, ${lon.toFixed(6)}`,source:kind,approximate:true}}
+function parseCoords(q){const m=q.trim().match(/^\s*(-?\d{1,3}(?:\.\d+)?)\s*[,，\s]\s*(-?\d{1,3}(?:\.\d+)?)\s*$/);if(!m)return null;let a=+m[1],b=+m[2];if(isKorea(a,b))return point(a,b);if(isKorea(b,a))return point(b,a);return null}
+function parseMapLink(raw){let u;try{u=new URL(raw.trim())}catch{return null}if(!/^https?:$/.test(u.protocol))return {error:'linkUnknown'};const host=u.hostname.toLowerCase();if(!/(google\.|goo\.gl|naver\.|kakao\.|daum\.|maps\.app\.goo\.gl|openstreetmap\.)/.test(host))return {error:'linkUnknown'};
+ if(/^(maps\.app\.goo\.gl|goo\.gl|naver\.me|kko\.to|place\.map\.kakao\.com)$/.test(host))return {error:'linkShort'};
+ let lat,lon,kind='coordinate';let whole=u.href;try{whole=decodeURIComponent(u.href)}catch{}const matches=[whole.match(/@(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/),whole.match(/!3d(-?\d{1,3}\.\d+)!4d(-?\d{1,3}\.\d+)/),whole.match(/\/link\/(?:to|map|roadview)\/(?:[^/,]+,)?(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/),whole.match(/[?&#](?:ll|center|q)=(-?\d{1,3}\.\d+)%?2[Cc](-?\d{1,3}\.\d+)/)];
+ for(const m of matches){if(m&&isKorea(+m[1],+m[2])){lat=+m[1];lon=+m[2];break}}
+ if(lat===undefined){const c=u.searchParams.get('c');if(c){const m=c.match(/^(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/);if(m&&isKorea(+m[2],+m[1])){lon=+m[1];lat=+m[2];kind='center'}}}
+ if(lat===undefined){const p=u.searchParams;const a=+(p.get('lat')||p.get('latitude')),b=+(p.get('lon')||p.get('lng')||p.get('longitude'));if(isKorea(a,b)){lat=a;lon=b;kind='center'}}
+ if(lat!==undefined){if(u.pathname.includes('/@')||u.pathname.includes('/maps/place/')||u.searchParams.has('c'))kind='center';return {place:point(lat,lon,kind,kind==='center'?t('mapCenter'):'', '')}}
+ const q=u.searchParams.get('query')||u.searchParams.get('q')||u.searchParams.get('search');if(q&&q.length<180)return {query:q};return {error:'linkUnknown'}
 }
-function markerEl(p,selected=false){let el=document.createElement('div');el.className='nabi-pin'+(selected?' is-selected':'');el.innerHTML='<svg viewBox="0 0 38 46" aria-hidden="true"><path d="M19 1C8.7 1 1 9.6 1 20.1c0 11.6 18 24.4 18 24.4S37 31.7 37 20.1C37 9.6 29.3 1 19 1Z"/><circle cx="19" cy="19" r="6" fill="#fff" stroke="none"/></svg>';el.title=p.ko||p.ja||'위치';el.addEventListener('click',e=>{e.stopPropagation();choose(p)});return el;}
-function clearMarkers(){state.markers.forEach(m=>m.remove());state.markers=[];if(state.selectedMarker){state.selectedMarker.remove();state.selectedMarker=null}}
-function updateMarkers(){if(!state.ready||!state.map)return;clearMarkers();const ids=featured[state.city];const list=ids.map(id=>byId.get('seed-'+id)).filter(Boolean);list.forEach(p=>{if(p.id===state.selected?.id)return;state.markers.push(new maplibregl.Marker({element:markerEl(p)}).setLngLat([p.lon,p.lat]).addTo(state.map));});if(state.selected)state.selectedMarker=new maplibregl.Marker({element:markerEl(state.selected,true),anchor:'bottom'}).setLngLat([state.selected.lon,state.selected.lat]).addTo(state.map);}
-function mapFailure(){state.ready=false;$('mapFallback').hidden=false;}
-function initMap(){if(state.map||!window.maplibregl)return;try{state.mapAttempt++;$('mapFallback').hidden=true;state.map=new maplibregl.Map({container:'map',style:'voyager',center:[cityViews.busan[0],cityViews.busan[1]],zoom:cityViews.busan[2],minZoom:5.5,maxZoom:19,attributionControl:true,pitchWithRotate:false,dragRotate:false,touchPitch:false});state.map.touchZoomRotate.disableRotation();let alive=false;const attempt=state.mapAttempt;const timeout=setTimeout(()=>{if(!alive&&attempt===state.mapAttempt)mapFailure()},13000);state.map.on('load',()=>{alive=true;clearTimeout(timeout);state.ready=true;$('mapFallback').hidden=true;if(state.selected)state.map.jumpTo({center:[state.selected.lon,state.selected.lat],zoom:14.5});updateMarkers();});state.map.on('error',e=>{if(!alive&&e.error&&String(e.error.message||'').match(/(fetch|network|load|403|404)/i)){/* timeout handles full failure */}});state.map.on('click',e=>{const lat=e.lngLat.lat,lon=e.lngLat.lng;if(isKR(lat,lon))choose(customPoint(lat,lon,'','pin'),false)});state.map.on('moveend',()=>{});}catch{mapFailure();}}
-function openURL(url){window.open(url,'_blank','noopener,noreferrer')}
-async function shareSelected(){const p=state.selected;if(!p)return;let text=`${name(p)} / ${altName(p)||''}\n${cstr(p)}\n`+externalLinks(p).google;if(location.protocol.startsWith('http')){const u=new URL(location.href);u.search='';u.hash='';u.searchParams.set('lat',p.lat);u.searchParams.set('lon',p.lon);u.searchParams.set('ko',p.ko);if(p.ja)u.searchParams.set('ja',p.ja);text=u.toString();}if(navigator.share){try{await navigator.share({title:name(p),text:`${name(p)} · ${cstr(p)}`,url:location.protocol.startsWith('http')?text:externalLinks(p).google});return}catch{}}showToast((await clipboard(text))?t('toastShare'):t('toastClipboard'));}
-async function pasteLink(){let value='';try{if(navigator.clipboard&&window.isSecureContext)value=await navigator.clipboard.readText()}catch{}if(value&&value.trim()){$('searchInput').value=value.trim();$('clearInput').hidden=false;await runSearch(value.trim());}else{$('searchInput').focus();showToast(t('toastNoLink'))}}
-function bootEvents(){
+function photonItem(f){try{const prop=f.properties||{},[lon,lat]=f.geometry.coordinates;if(!isKorea(lat,lon))return null;const ko=String(prop['name:ko']||prop.name||prop.street||'').slice(0,120);if(!ko)return null;const ja=String(prop['name:ja']||'').slice(0,120);const area=[prop.city||prop.county||prop.state,prop.district].filter(Boolean).join(' · ').slice(0,150);let type='generic';if(['railway','station','halt','subway_entrance'].includes(prop.osm_value)||prop.type==='station')type='station';else if(['park','garden'].includes(prop.osm_value))type='nature';else if(prop.osm_key==='tourism')type='sight';return safePlace({id:`osm-${prop.osm_type||'X'}-${prop.osm_id||lat+'-'+lon}`,ko,ja,lat,lon,type,area,source:'osm',approximate:true})}catch{return null}}
+async function remoteSearch(q,seq){const k=norm(q);if(state.remoteCache.has(k))return state.remoteCache.get(k);const params=new URLSearchParams({q,limit:'8',lang:state.lang,bbox:'124.5,32.7,131.1,39.4'});const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),6500);
+ try{const resp=await fetch('https://photon.komoot.io/api/?'+params,{signal:ctrl.signal});if(!resp.ok)throw Error('remote '+resp.status);const json=await resp.json();const items=(json.features||[]).map(photonItem).filter(Boolean);state.remoteCache.set(k,items);return items}finally{clearTimeout(timer)}
+}
+async function runSearch(raw){let q=String(raw||'').trim();if(!q)return;const urlMatch=q.match(/https?:\/\/[^\s]+/);if(urlMatch){const link=parseMapLink(urlMatch[0]);if(link?.error){toast(t(link.error));return}if(link?.place){state.searched=true;state.tab='explore';state.query=q;state.results=[link.place];selectPlace(link.place);return}if(link?.query)q=link.query;else{toast(t('linkUnknown'));return}}
+ const coords=parseCoords(q);if(coords){state.tab='explore';state.searched=true;state.query=q;state.results=[coords];selectPlace(coords);return}
+ state.request++;const seq=state.request;state.query=q;state.tab='explore';state.searched=true;state.loading=false;state.networkIssue=false;state.selected=null;$('searchInput').value=q;const local=localSearch(q);state.results=local;render();$('panelScroll').scrollTop=0;
+ if(local.length&&[local[0].ko,local[0].ja,...(local[0].aliases||[])].some(v=>norm(v)===norm(q)))selectPlace(local[0]);
+ if(local.length>=3)return;
+ state.loading=true;renderPanel();try{const live=await remoteSearch(q,seq);if(seq!==state.request)return;const result=local.slice();for(const p of live){if(result.some(x=>Math.hypot(p.lat-x.lat,p.lon-x.lon)<.0004))continue;result.push(p)}state.results=result.slice(0,12)}catch{if(seq!==state.request)return;state.networkIssue=true}finally{if(seq===state.request){state.loading=false;renderPanel();renderMarkers()}}
+}
+async function paste(){let value='';try{value=await navigator.clipboard.readText()}catch{}if(!value){$('searchInput').focus();toast(t('pasteDenied'));return}$('searchInput').value=value;await runSearch(value)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);return true}catch{try{const node=document.createElement('textarea');node.value=text;node.style.position='fixed';node.style.opacity='0';document.body.appendChild(node);node.select();const ok=document.execCommand('copy');node.remove();return ok}catch{return false}}}
+function toggleSaved(){const p=state.selected;if(!p)return;if(isSaved(p)){state.saved=state.saved.filter(q=>q.id!==p.id);toast(t('savedRemove'))}else{state.saved.unshift(safePlace(p));toast(t('savedDone'))}store('nabi05-favorites',state.saved);render()}
+async function share(){const p=state.selected;if(!p)return;let link=googleURL(p);if(/^https?:$/.test(location.protocol)){const u=new URL(location.href);u.search='';u.hash='';u.searchParams.set('lat',p.lat);u.searchParams.set('lon',p.lon);u.searchParams.set('name',p.ko);u.searchParams.set('ja',p.ja);link=u.toString()}
+ if(navigator.share){try{await navigator.share({title:name(p),text:alt(p),url:link});return}catch{}}toast((await copyText(link))?t('shareDone'):t('copyFail'))}
+function openNew(url){window.open(url,'_blank','noopener,noreferrer')}
+function bootLink(){const p=new URLSearchParams(location.search);const lat=+p.get('lat'),lon=+p.get('lon');if(isKorea(lat,lon)){const q=point(lat,lon,'coordinate',String(p.get('name')||'').slice(0,120),String(p.get('ja')||'').slice(0,120));state.results=[q];state.searched=true;selectPlace(q)}}
+function events(){
  $('searchForm').addEventListener('submit',e=>{e.preventDefault();runSearch($('searchInput').value)});
- $('searchInput').addEventListener('input',()=>{$('clearInput').hidden=!$('searchInput').value.trim()});
- $('clearInput').addEventListener('click',()=>{home();$('searchInput').focus()});$('goHome').addEventListener('click',home);
- document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{state.lang=b.dataset.lang;save('nabi03-lang',state.lang);translate()}));
- document.querySelectorAll('[data-city]').forEach(b=>b.addEventListener('click',()=>setCity(b.dataset.city)));
- document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;renderPanel();$('panelScroll').scrollTop=0;}));
- $('chips').addEventListener('click',e=>{let btn=e.target.closest('[data-chip]');if(!btn)return;const v=btn.dataset.chip;if(v==='paste')pasteLink();else runSearch(v)});
- $('panelContent').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const place=btn.dataset.place,action=btn.dataset.action;if(place){const p=[...state.results,...state.favorites,...state.recent,...NABI_PLACES].find(x=>x.id===place);if(p)choose(p)}if(action==='home')home();if(action==='paste')pasteLink();if(action==='coord-example')runSearch('35.2293, 129.0896');if(action==='clearRecent'){state.recent=[];save('nabi03-recent',[]);showToast(t('toastHistory'));renderPanel()}});
- $('placeCard').addEventListener('click',async e=>{const a=e.target.closest('[data-detail]');if(!a||!state.selected)return;const action=a.dataset.detail;if(action==='close'){state.selected=null;renderDetail();updateMarkers();renderPanel()}if(action==='save')toggleSaved();if(action==='copy')showToast((await clipboard(cstr(state.selected)))?t('toastCopied'):t('toastClipboard'));if(action==='share')shareSelected();if(action==='route')openURL(routeURL(state.selected));});
- $('zoomIn').addEventListener('click',()=>state.ready?state.map.zoomIn({duration:250}):showToast(t('toastOffline')));
- $('zoomOut').addEventListener('click',()=>state.ready?state.map.zoomOut({duration:250}):showToast(t('toastOffline')));
- $('styleBtn').addEventListener('click',()=>{if(!state.ready)return showToast(t('toastOffline'));state.dark=!state.dark;state.map.setStyle(state.dark?'topo':'voyager');state.map.once('style.load',()=>updateMarkers())});
- $('locateBtn').addEventListener('click',()=>{if(!navigator.geolocation)return showToast(t('toastGeoloc'));navigator.geolocation.getCurrentPosition(pos=>{const {latitude:lat,longitude:lon}=pos.coords;if(!isKR(lat,lon))return showToast(t('toastGeoloc'));choose(customPoint(lat,lon,state.lang==='ja'?'現在地':'현재 위치','coordinate'));},()=>showToast(t('toastGeoloc')),{enableHighAccuracy:false,timeout:9000,maximumAge:60000})});
- $('retryMap').addEventListener('click',()=>{if(state.map){try{state.map.remove()}catch{}state.map=null;state.ready=false}initMap()});
- $('aboutBtn').addEventListener('click',()=>$('aboutDialog').showModal());$('closeDialog').addEventListener('click',()=>$('aboutDialog').close());$('aboutDialog').addEventListener('click',e=>{if(e.target===$('aboutDialog'))$('aboutDialog').close()});
- document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('searchInput').focus();$('searchInput').select()}if(e.key==='Escape'&&!$('aboutDialog').open&&state.selected){state.selected=null;renderDetail();updateMarkers();renderPanel()}});
+ $('searchInput').addEventListener('input',()=>$('clearBtn').hidden=!$('searchInput').value.trim());
+ $('clearBtn').addEventListener('click',()=>{state.searched=false;state.query='';state.selected=null;state.results=[];state.request++;$('searchInput').value='';render();$('searchInput').focus()});
+ $('homeBtn').addEventListener('click',()=>setCity(state.city));
+ $('pasteBtn').addEventListener('click',paste);
+ document.querySelectorAll('[data-lang]').forEach(el=>el.addEventListener('click',()=>{state.lang=el.dataset.lang;store('nabi05-lang',state.lang);translate()}));
+ document.querySelectorAll('[data-city]').forEach(el=>el.addEventListener('click',()=>setCity(el.dataset.city)));
+ document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',()=>{state.tab=el.dataset.tab;render();$('panelScroll').scrollTop=0}));
+ $('panelBody').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.category){state.category=b.dataset.category;renderPanel()}if(b.dataset.place){const p=[...state.results,...state.saved,...state.recent,...NABI_PLACES].find(p=>p.id===b.dataset.place);if(p)selectPlace(p)}if(b.dataset.action==='clear-recent'){state.recent=[];store('nabi05-recent',[]);toast(t('clearDone'));render()}});
+ $('detail').addEventListener('click',async e=>{const b=e.target.closest('button[data-detail]');if(!b)return;const what=b.dataset.detail;if(what==='close')clearSelection();else if(what==='route'&&state.selected)openNew(routeURL(state.selected));else if(what==='save')toggleSaved();else if(what==='copy'&&state.selected)toast((await copyText(`${state.selected.lat.toFixed(6)}, ${state.selected.lon.toFixed(6)}`))?t('copyDone'):t('copyFail'));else if(what==='share')share()});
+ $('zoomIn').addEventListener('click',()=>map.zoomBy(1));$('zoomOut').addEventListener('click',()=>map.zoomBy(-1));
+ $('locateBtn').addEventListener('click',()=>{if(!navigator.geolocation){toast(t('locationFail'));return}navigator.geolocation.getCurrentPosition(pos=>{const {latitude,longitude}=pos.coords;if(!isKorea(latitude,longitude)){toast(t('locationFail'));return}selectPlace(point(latitude,longitude,'coordinate',t('current')))},()=>toast(t('locationFail')),{enableHighAccuracy:false,timeout:8000,maximumAge:60000})});
+ $('infoBtn').addEventListener('click',()=>$('aboutDialog').showModal());$('closeInfo').addEventListener('click',()=>$('aboutDialog').close());$('aboutDialog').addEventListener('click',e=>{if(e.target===$('aboutDialog'))$('aboutDialog').close()});
+ document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('searchInput').focus();$('searchInput').select()}else if(e.key==='Escape'&&state.selected){clearSelection()}});
 }
-function bootLink(){const p=new URLSearchParams(location.search);if(p.has('lat')&&p.has('lon')){const lat=Number(p.get('lat')),lon=Number(p.get('lon'));if(isKR(lat,lon)){const place=customPoint(lat,lon,p.get('ko')||'','link',p.get('ja')||'');state.results=[place];state.searched=true;choose(place,false)}}}
-window.NABI_maplibreReady=initMap;window.NABI_maplibreFailed=mapFailure;
-hydrateIcons();bootEvents();translate();bootLink();setTimeout(()=>{if(!window.maplibregl&&!state.ready)mapFailure()},10000);
+map=new window.NABIMap({onClick:(lat,lon)=>{if(isKorea(lat,lon))selectPlace(point(lat,lon,'center',t('mapClick')),false)}});
+map.setView(...cityCenters[state.city]);events();translate();bootLink();
 })();
 
 </script>
-<script>window.NABI_maplibreReady?.()</script>
-
 </body>
 </html>
