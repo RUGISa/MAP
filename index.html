@@ -1681,8 +1681,8 @@ function stopDrag() { drag = null; el('map').classList.remove('dragging'); }
 el('map').addEventListener('pointerup', stopDrag);
 el('map').addEventListener('pointercancel', stopDrag);
 // 휠 입력을 누적해 작은 트랙패드 움직임이 연속 확대되지 않도록 한다.
-const WHEEL_STEP = 120;             // 숫자가 클수록 휠 확대가 둔감해진다.
-const WHEEL_COOLDOWN_MS = 190;      // 확대/축소 한 번 후 다음 조작까지의 최소 간격.
+const WHEEL_STEP = 80;             // 숫자가 클수록 휠 확대가 둔감해진다.
+const WHEEL_COOLDOWN_MS = 100;      // 확대/축소 한 번 후 다음 조작까지의 최소 간격.
 const WHEEL_RESET_MS = 350;         // 한동안 스크롤하지 않으면 남은 누적량 제거.
 let wheelAccum = 0;
 let wheelLastInput = 0;
