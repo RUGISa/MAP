@@ -5,10 +5,10 @@
   <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
   <meta content="#f9faf8" name="theme-color"/>
   <meta content="strict-origin-when-cross-origin" name="referrer"/>
-  <title>
-   NABI &mdash; 한일 주소 검색
-  </title>
+  <title>NABI</title>
   <style>
+/* 전역 색상과 크기 변수 */
+
 :root {
   --ink: #17242b;
   --muted: #75848b;
@@ -1032,18 +1032,7 @@ button:focus-visible,input:focus-visible {
   <div class="app">
    <!-- 상단바: 브랜드, 프로젝트 소개, 언어 전환 -->
   <header class="top">
-    <div class="brand">
-     <span class="brandmark">
-      ✦
-     </span>
-     nabi
-     <span style="color:var(--accent)">
-      .
-     </span>
-     <small>
-      KOREA &times; JAPAN
-     </small>
-    </div>
+    <div class="brand">NABI</div>
     <div class="top-actions">
      <button class="plain" id="about">
       프로젝트 소개
@@ -1257,7 +1246,7 @@ button:focus-visible,input:focus-visible {
  */
 'use strict';
 
-// [01] 기본 장소 데이터: 네트워크가 끊겨도 검색할 수 있는 대표 지명 및 한일 별칭.
+// 기본 장소 데이터: 네트워크가 끊겨도 검색할 수 있는 대표 지명 및 한일 별칭.
 const SEEDS = [
     // Busan
     ['busan-uni', '부산대역', '釜山大学駅', 35.2293, 129.0896, 'station', '부산 · 금정구', ['부산대학교역', '부산대 역', 'プサンデ駅', 'プサンデえき', '釜山大学', '부산대역 1호선', 'Busan National University Station']],
@@ -1302,12 +1291,12 @@ const SEEDS = [
     ['daejeon-station', '대전역', '大田駅', 36.3325, 127.4341, 'station', '대전 · 동구', ['大田', 'テジョン駅', 'Daejeon Station']],
     ['jeonju', '전주한옥마을', '全州韓屋村', 35.8149, 127.1533, 'sight', '전북 · 전주시', ['전주 한옥마을', '全州', 'チョンジュ', 'Jeonju Hanok Village']]
 ].map(([id, ko, ja, lat, lon, type, area, aliases]) => ({ id, ko, ja, lat, lon, type, area, aliases, source: 'local' }));
-// [02] 화면 번역 사전: ko는 한국어, ja는 일본어에 대응한다.
+// 화면 번역 사전: ko는 한국어, ja는 일본어에 대응한다.
 const dict = { ko: { kicker: 'KOREA ADDRESS BRIDGE', headline: '일본어로 찾아도,<br>정확한 한국 주소로.', subtitle: '한국에 거주하는 일본인을 위한 한일 주소 검색·변환 지도', searchhelp: '장소명이나 한국 주소를 입력해 보세요. 두 언어가 모두 지원됩니다.', explore: '장소 찾기', saved: '저장한 장소', recent: '최근 검색', foot: '한일 주소 검색 베타 · 공개 지도 데이터 사용', bw: '이전', color: '현재', compare: '전후 비교', before: 'BEFORE · 단순 흑백', after: 'AFTER · 컬러 지도', result: '검색 결과', popular: '추천 장소', loading: '다른 장소도 검색하는 중', empty: '일치하는 장소가 없습니다. 지역명과 함께 다시 검색해 보세요.', savedEmpty: '아직 저장한 장소가 없어요', recentEmpty: '최근 검색한 장소가 없어요', copy: '주소 복사', route: '길찾기', save: '저장', unsave: '저장됨' }, ja: { kicker: '韓国の住所をもっと簡単に', headline: '日本語で探しても、<br>韓国の住所が見つかる。', subtitle: '韓国在住の日本人のための住所検索・変換マップ', searchhelp: '日本語、韓国語の地名や住所を入力してください。', explore: '場所を探す', saved: '保存した場所', recent: '最近の検索', foot: '韓日住所検索ベータ · 公開地図データを使用', bw: '以前', color: '現在', compare: '比較', before: 'BEFORE · モノクロ', after: 'AFTER · カラー', result: '検索結果', popular: 'おすすめの場所', loading: '他の場所も検索中', empty: '場所が見つかりません。地域名も入力してください。', savedEmpty: '保存した場所はありません', recentEmpty: '検索履歴はありません', copy: '住所コピー', route: '経路検索', save: '保存', unsave: '保存済み' } };
-// [03] DOM 선택과 HTML 이스케이프: 검색 결과 텍스트의 HTML 삽입을 방지한다.
+// DOM 선택과 HTML 이스케이프: 검색 결과 텍스트의 HTML 삽입을 방지한다.
 const el = id => document.getElementById(id), esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = x => String(x || '').normalize('NFKC').toLowerCase().replace(/[\s\u3000·._()\[\]ー-]/g, '');
-// [04] 현재 화면 상태: 언어, 검색, 선택 장소, 지도 중심/배율, 캐시 등을 기억한다.
+// 현재 화면 상태: 언어, 검색, 선택 장소, 지도 중심/배율, 캐시 등을 기억한다.
 let lang = 'ko', tab = 'explore', query = '', results = [], selected = null, onlineStatus = '', mode = 'color', center = { lat: 35.16, lon: 129.06 }, zoom = 11, seq = 0, remoteCache = {};
 try {
     remoteCache = JSON.parse(localStorage.getItem('nabi_remote_v9') || '{}');
@@ -1329,7 +1318,7 @@ for (const p of [...saved, ...recent]) {
 const iconFor = p => ({ station: '🚉', airport: '✈', university: '🎓', beach: '🏖', sight: '⌂', park: '♧', market: '▦', nature: '△', district: '⌖' }[p.type] || '⌖');
 const name = p => lang === 'ja' ? (p.ja || p.ko || '日本語名未登録') : (p.ko || p.ja || '한국어 명칭 미등록');
 const alt = p => lang === 'ja' ? (p.ko || '한국어 이름 미등록') : (p.ja || '日本語名未登録');
-// [05] 내장 검색: 이름/별칭을 정규화하여 완전 일치부터 부분 일치까지 점수를 매긴다.
+// 내장 검색: 이름/별칭을 정규화하여 완전 일치부터 부분 일치까지 점수를 매긴다.
 function localSearch(q) { let n = norm(q); return SEEDS.map(p => { let names = [p.ko, p.ja, ...(p.aliases || [])]; let rank = 0; for (let s of names) {
     let a = norm(s);
     if (!a)
@@ -1343,7 +1332,7 @@ function localSearch(q) { let n = norm(q); return SEEDS.map(p => { let names = [
 } return { p, rank }; }).filter(x => x.rank).sort((a, b) => b.rank - a.rank).map(x => x.p); }
 const within = p => Number.isFinite(p.lat) && Number.isFinite(p.lon) && p.lat >= 32 && p.lat <= 39.9 && p.lon >= 124 && p.lon <= 132;
 const getPair = q => { let m = q.match(/^\s*(-?\d{1,2}\.\d+)\s*[,\s]+\s*(-?\d{2,3}\.\d+)\s*$/); return m ? { lat: +m[1], lon: +m[2] } : null; };
-// [06] 좌표 및 지도 공유 URL을 해석한다. 단축 URL은 별도 해제가 필요하다.
+// 좌표 및 지도 공유 URL을 해석한다. 단축 URL은 별도 해제가 필요하다.
 function urlPlace(q) { try {
     let u = new URL(q), str = u.href;
     let m = str.match(/(?:[?&](?:q|query|center)=|@)(\d{2}\.\d+)[,%2C\s]+(1\d{2}\.\d+)/i);
@@ -1357,7 +1346,7 @@ function urlPlace(q) { try {
 }
 catch { } return null; }
 function currentItems() { return tab === 'saved' ? saved : tab === 'recent' ? recent : results; }
-// [07] 목록 UI 갱신: 검색 결과·즐겨찾기·최근 검색 중 현재 탭만 출력한다.
+// 목록 UI 갱신: 검색 결과·즐겨찾기·최근 검색 중 현재 탭만 출력한다.
 function render() { let items = currentItems(); let local = !query && tab === 'explore'; let title = tab === 'saved' ? dict[lang].saved : tab === 'recent' ? dict[lang].recent : query ? dict[lang].result : dict[lang].popular; let msg = tab === 'saved' ? dict[lang].savedEmpty : tab === 'recent' ? dict[lang].recentEmpty : dict[lang].empty; el('results').innerHTML = `<div class="sectionlabel">${esc(title)}<span>${items.length}${lang === 'ja' ? '件' : '곳'}</span></div>` + (items.length ? items.slice(0, 45).map(p => `<button class="place ${selected && selected.id === p.id ? 'active' : ''}" data-id="${esc(p.id)}"><span class="placeicon">${iconFor(p)}</span><span class="info"><strong>${esc(name(p))}${p.source === 'local' && query ? '<span class="localtag">기본 지명</span>' : ''}</strong><em>${esc(alt(p))}${alt(p) ? ' · ' : ''}${esc(p.area || '한국')}</em></span><span class="chev">›</span></button>`).join('') : `<div class="empty">${onlineStatus === 'loading' ? '<span class="spinner"></span>' : ''}<strong>${esc(onlineStatus === 'loading' ? dict[lang].loading : msg)}</strong>${onlineStatus === 'error' ? '외부 검색 서비스 연결이 불안정합니다. 기본 지명과 저장된 장소는 계속 이용할 수 있습니다.' : ''}</div>`) + (onlineStatus === 'loading' && items.length ? `<div class="empty"><span class="spinner"></span>${dict[lang].loading}</div>` : ''); document.querySelectorAll('.place').forEach(b => b.onclick = () => selectPlace(items.find(p => p.id === b.dataset.id))); }
 function showToast(msg) { let e = el('toast'); e.textContent = msg; e.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => e.classList.remove('show'), 2700); }
 function searchUI() { document.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab)); render(); }
@@ -1367,7 +1356,7 @@ const hasKorean = s => /[가-힣]/.test(s || '');
 const hasJapanese = s => /[\u3040-\u30ff\u3400-\u9fff]/.test(s || '');
 const japaneseQuery = q => /[\u3040-\u30ff\u3400-\u9fff]/.test(q);
 const localLabel = (p, which) => which === 'ko' ? (p.ko || '') : (p.ja || '');
-// [08] 일본어 지명의 별칭과 대응 한국어 검색어를 만든다. 완전한 기계 번역 기능은 아니다.
+// 일본어 지명의 별칭과 대응 한국어 검색어를 만든다. 완전한 기계 번역 기능은 아니다.
 function expandQueries(q) {
     const variants = [q];
     const match = localSearch(q);
@@ -1392,7 +1381,7 @@ function normalizeRemote(p) {
         return { ...matched, source: 'local' };
     return p;
 }
-// [09] Nominatim 결과 정규화: 한국어/일본어 실제 명칭 필드를 우선한다.
+// Nominatim 결과 정규화: 한국어/일본어 실제 명칭 필드를 우선한다.
 function fromNominatim(p) {
     try {
         const lat = +p.lat, lon = +p.lon;
@@ -1420,7 +1409,7 @@ function fromNominatim(p) {
         return null;
     }
 }
-// [10] 보조 Photon 응답을 동일한 장소 데이터 형태로 변환한다.
+// 보조 Photon 응답을 동일한 장소 데이터 형태로 변환한다.
 function fromPhoton(f) {
     try {
         const p = f.properties || {}, pos = f.geometry.coordinates, lat = +pos[1], lon = +pos[0];
@@ -1438,7 +1427,7 @@ function fromPhoton(f) {
         return null;
     }
 }
-// [11] 장소 중복 통합: OSM ID 또는 가까운 좌표와 동일한 명칭을 확인한다.
+// 장소 중복 통합: OSM ID 또는 가까운 좌표와 동일한 명칭을 확인한다.
 function mergePlaces(list) {
     const out = [];
     for (const item of list) {
@@ -1460,7 +1449,7 @@ function mergePlaces(list) {
     return out;
 }
 let lastNominatimAt = 0;
-// [12] 통신 공통 함수: 제한 시간과 HTTP 오류 처리.
+// 통신 공통 함수: 제한 시간과 HTTP 오류 처리.
 async function fetchJson(url, timeout = 7000) {
     const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), timeout);
     try {
@@ -1473,7 +1462,7 @@ async function fetchJson(url, timeout = 7000) {
         clearTimeout(timer);
     }
 }
-// [13] 온라인 검색: Nominatim 요청 후 결과가 적으면 Photon을 보조로 호출한다.
+// 온라인 검색: Nominatim 요청 후 결과가 적으면 Photon을 보조로 호출한다.
 async function fetchOnline(q, token) {
     let all = [];
     const variants = expandQueries(q);
@@ -1521,7 +1510,7 @@ async function fetchOnline(q, token) {
         return [];
     return mergePlaces(all);
 }
-// [14] 검색의 진입점: 입력 해석 → 내장 결과 → 캐시/온라인 → 화면 병합.
+// 검색의 진입점: 입력 해석 → 내장 결과 → 캐시/온라인 → 화면 병합.
 async function search(q) {
     q = q.trim();
     if (!q)
@@ -1582,15 +1571,14 @@ async function search(q) {
     if (results.length === 1 && !selected)
         selectPlace(results[0]);
 }
-// [15] 장소 선택: 지도 중심 이동, 최근 기록 저장, 상세 화면 갱신.
+// 장소 선택: 지도 중심 이동, 최근 기록 저장, 상세 화면 갱신.
 function selectPlace(p) { if (!p)
     return; selected = p; center = { lat: p.lat, lon: p.lon }; zoom = p.type === 'district' ? 13 : 15; recent = [p, ...recent.filter(x => x.id !== p.id)].slice(0, 20); localStorage.setItem('nabi_recent_v8', JSON.stringify(recent)); render(); renderMap(); renderDetail(); }
-// [16] 장소 상세: 다국어 이름·좌표, 주소 복사, 즐겨찾기, 외부 길찾기.
+// 장소 상세: 다국어 이름·좌표, 주소 복사, 즐겨찾기, 외부 길찾기.
 function renderDetail() { if (!selected) {
     el('detail').hidden = true;
     return;
-} let p = selected; let isSaved = saved.some(x => x.id === p.id); el('detail').hidden = false; el('detail').innerHTML = `<button class="close" id="detai
-lClose">✕</button><div class="detail-kicker">${p.source === 'local' ? 'BILINGUAL PLACE' : p.source === 'online' ? 'OPEN MAP DATA' : 'COORDINATES'}</div><h2>${esc(name(p))}</h2><div class="alt">${esc(alt(p))}${p.raw && !p.ko && !p.ja ? ' · ' + esc(p.raw) : ''}</div><div class="addr">${esc(p.area || '한국')}<br>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}<br><span style="color:#a2ada9">${p.source === 'local' ? '기본 지명 참고 좌표 · 정확한 주소는 외부 지도 확인' : p.source === 'online' ? '공개 지도 검색 결과 · 실제 위치 확인 권장' : '입력된 좌표'}</span></div><div class="buttons"><button class="primary" id="routeBtn">↗ ${dict[lang].route}</button><button id="copyBtn">${dict[lang].copy}</button><button id="saveBtn">${isSaved ? dict[lang].unsave : dict[lang].save}</button></div>`; el('detailClose').onclick = () => { selected = null; el('detail').hidden = true; renderMap(); render(); }; el('routeBtn').onclick = () => window.open(`https://map.naver.com/p/search/${encodeURIComponent(p.ko || p.ja || p.raw || `${p.lat},${p.lon}`)}`, '_blank', 'noopener'); el('copyBtn').onclick = async () => { let val = p.area && p.source === 'coord' ? `${p.lat}, ${p.lon}` : p.ko + ' / ' + (p.ja || '') + ' / ' + p.area + ' / ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6); try {
+} let p = selected; let isSaved = saved.some(x => x.id === p.id); el('detail').hidden = false; el('detail').innerHTML = `<button class="close" id="detailClose">✕</button><div class="detail-kicker">${p.source === 'local' ? 'BILINGUAL PLACE' : p.source === 'online' ? 'OPEN MAP DATA' : 'COORDINATES'}</div><h2>${esc(name(p))}</h2><div class="alt">${esc(alt(p))}${p.raw && !p.ko && !p.ja ? ' · ' + esc(p.raw) : ''}</div><div class="addr">${esc(p.area || '한국')}<br>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}<br><span style="color:#a2ada9">${p.source === 'local' ? '기본 지명 참고 좌표 · 정확한 주소는 외부 지도 확인' : p.source === 'online' ? '공개 지도 검색 결과 · 실제 위치 확인 권장' : '입력된 좌표'}</span></div><div class="buttons"><button class="primary" id="routeBtn">↗ ${dict[lang].route}</button><button id="copyBtn">${dict[lang].copy}</button><button id="saveBtn">${isSaved ? dict[lang].unsave : dict[lang].save}</button></div>`; el('detailClose').onclick = () => { selected = null; el('detail').hidden = true; renderMap(); render(); }; el('routeBtn').onclick = () => window.open(`https://map.naver.com/p/search/${encodeURIComponent(p.ko || p.ja || p.raw || `${p.lat},${p.lon}`)}`, '_blank', 'noopener'); el('copyBtn').onclick = async () => { let val = p.area && p.source === 'coord' ? `${p.lat}, ${p.lon}` : p.ko + ' / ' + (p.ja || '') + ' / ' + p.area + ' / ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6); try {
     await navigator.clipboard.writeText(val);
 }
 catch {
@@ -1602,12 +1590,12 @@ catch {
     ta.remove();
 } showToast(lang === 'ja' ? 'コピーしました' : '장소 정보가 복사됐어요'); }; el('saveBtn').onclick = () => { saved = isSaved ? saved.filter(x => x.id !== p.id) : [p, ...saved.filter(x => x.id !== p.id)]; localStorage.setItem('nabi_saved_v8', JSON.stringify(saved)); renderDetail(); render(); }; }
 const RAD = Math.PI / 180;
-// [17] Web Mercator 변환: 위경도를 지도 타일의 픽셀 좌표로 바꾼다.
+// Web Mercator 변환: 위경도를 지도 타일의 픽셀 좌표로 바꾼다.
 function world(lat, lon, z) { let size = 256 * 2 ** z; lat = Math.max(-85, Math.min(85, lat)); return { x: (lon + 180) / 360 * size, y: (1 - Math.log(Math.tan(lat * RAD) + 1 / Math.cos(lat * RAD)) / Math.PI) / 2 * size }; }
 function unworld(x, y, z) { let size = 256 * 2 ** z; return { lon: x / size * 360 - 180, lat: Math.atan(Math.sinh(Math.PI * (1 - 2 * y / size))) / RAD }; } // 지도 타일은 좌표(zoom/x/y)별로 재사용한다. 드래그 시 이미지를 다시 생성하지 않는다.
 const tileLayers = new Map();
 let mapFrame = 0;
-// [18] 타일 재사용: 기존 이미지의 위치만 변경하여 지도 드래그 부담을 줄인다.
+// 타일 재사용: 기존 이미지의 위치만 변경하여 지도 드래그 부담을 줄인다.
 function updateTiles(layerId, required) {
     const layer = el(layerId);
     let existing = tileLayers.get(layerId);
@@ -1645,7 +1633,7 @@ function updateTiles(layerId, required) {
         }
     }
 }
-// [19] 지도 갱신: 가시 영역의 타일과 현재 선택된 핀만 그린다.
+// 지도 갱신: 가시 영역의 타일과 현재 선택된 핀만 그린다.
 function renderMap() {
     const root = el('map'), w = root.clientWidth, h = root.clientHeight;
     if (!w || !h)
@@ -1678,8 +1666,7 @@ function renderMap() {
     document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
     el('mapStatus').textContent = '© OpenStreetMap · ' + zoom + '×';
 }
-// 드래그·리사이즈 이벤트가 한 프레임 안에 여러 번 발생해도 지도는 한 번만 갱신한다.
-// [20] 프레임 제한: 포인터 이동 이벤트가 몰릴 때 불필요한 중복 렌더링을 피한다.
+// 프레임 제한: 포인터 이동 이벤트가 몰릴 때 불필요한 중복 렌더링을 피한다.
 function scheduleMapRender() {
     if (mapFrame)
         return;
@@ -1693,7 +1680,29 @@ el('map').addEventListener('pointermove', e => { if (!drag)
 function stopDrag() { drag = null; el('map').classList.remove('dragging'); }
 el('map').addEventListener('pointerup', stopDrag);
 el('map').addEventListener('pointercancel', stopDrag);
-el('map').addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(5, Math.min(18, zoom + (e.deltaY < 0 ? 1 : -1))); renderMap(); }, { passive: false });
+// 휠 입력을 누적해 작은 트랙패드 움직임이 연속 확대되지 않도록 한다.
+const WHEEL_STEP = 120;             // 숫자가 클수록 휠 확대가 둔감해진다.
+const WHEEL_COOLDOWN_MS = 190;      // 확대/축소 한 번 후 다음 조작까지의 최소 간격.
+const WHEEL_RESET_MS = 350;         // 한동안 스크롤하지 않으면 남은 누적량 제거.
+let wheelAccum = 0;
+let wheelLastInput = 0;
+let wheelLastZoom = -Infinity;
+el('map').addEventListener('wheel', e => {
+    e.preventDefault();
+    const now = performance.now();
+    const rawDelta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 600 : 1);
+    if (!rawDelta) return;
+    if (now - wheelLastInput > WHEEL_RESET_MS || wheelAccum * rawDelta < 0) wheelAccum = 0;
+    wheelLastInput = now;
+    wheelAccum += Math.max(-WHEEL_STEP * 2, Math.min(WHEEL_STEP * 2, rawDelta));
+    if (Math.abs(wheelAccum) < WHEEL_STEP || now - wheelLastZoom < WHEEL_COOLDOWN_MS) return;
+    const nextZoom = Math.max(5, Math.min(18, zoom + (wheelAccum < 0 ? 1 : -1)));
+    wheelAccum = 0;
+    wheelLastZoom = now;
+    if (nextZoom === zoom) return;
+    zoom = nextZoom;
+    renderMap();
+}, { passive: false });
 el('zoomIn').onclick = () => { zoom = Math.min(18, zoom + 1); renderMap(); };
 el('zoomOut').onclick = () => { zoom = Math.max(5, zoom - 1); renderMap(); };
 // 재시도 시 실패한 타일 노드를 제거해야 같은 이미지 URL도 다시 요청한다.
@@ -1709,11 +1718,11 @@ el('currentLocation').onclick = () => { if (!navigator.geolocation) {
     return;
 } navigator.geolocation.getCurrentPosition(p => { center = { lat: p.coords.latitude, lon: p.coords.longitude }; zoom = 14; renderMap(); }, () => showToast('위치 권한을 확인해 주세요')); };
 el('compareRange').oninput = e => { let pct = +e.target.value; el('tilesBW').style.clipPath = `inset(0 ${100 - pct}% 0 0)`; el('tiles').style.clipPath = `inset(0 0 0 ${pct}%)`; el('divider').style.left = pct + '%'; };
-// [21] 발표 모드: 같은 지도를 흑백·컬러·반반 비교로 전환한다.
+// 발표 모드: 같은 지도를 흑백·컬러·반반 비교로 전환한다.
 function setMode(v) { mode = v; el('tilesBW').style.clipPath = ''; el('tiles').style.clipPath = ''; el('divider').style.left = '50%'; el('compareRange').value = '50'; renderMap(); }
 document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 document.querySelectorAll('[data-city]').forEach(b => b.onclick = () => { center = { seoul: { lat: 37.5665, lon: 126.978 }, busan: { lat: 35.1796, lon: 129.0756 }, jeju: { lat: 33.4996, lon: 126.5312 } }[b.dataset.city]; zoom = 11; selected = null; el('detail').hidden = true; document.querySelectorAll('[data-city]').forEach(x => x.classList.toggle('active', x === b)); renderMap(); });
-// [22] UI 언어만 전환하며 기존 검색 결과와 지도 위치는 유지한다.
+// UI 언어만 전환하며 기존 검색 결과와 지도 위치는 유지한다.
 function setLang(v) { lang = v; document.documentElement.lang = v; document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b.dataset.lang === v)); document.querySelectorAll('[data-t]').forEach(e => e.innerHTML = dict[v][e.dataset.t] || ''); el('searchInput').placeholder = v === 'ko' ? '일본어·한국어 장소명, 주소, 좌표' : '場所名・住所・座標を入力'; render(); renderDetail(); }
 document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => setLang(b.dataset.lang));
 document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { tab = b.dataset.tab; searchUI(); });
