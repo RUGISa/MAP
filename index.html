@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- NABI MAP: 발표용 한일 주소 검색 웹. 화면 구조는 아래 HTML, 디자인은 styles.css, 기능은 app.js -->
 <html lang="ko">
  <head>
   <meta charset="utf-8"/>
@@ -1590,7 +1589,8 @@ function selectPlace(p) { if (!p)
 function renderDetail() { if (!selected) {
     el('detail').hidden = true;
     return;
-} let p = selected; let isSaved = saved.some(x => x.id === p.id); el('detail').hidden = false; el('detail').innerHTML = `<button class="close" id="detailClose">✕</button><div class="detail-kicker">${p.source === 'local' ? 'BILINGUAL PLACE' : p.source === 'online' ? 'OPEN MAP DATA' : 'COORDINATES'}</div><h2>${esc(name(p))}</h2><div class="alt">${esc(alt(p))}${p.raw && !p.ko && !p.ja ? ' · ' + esc(p.raw) : ''}</div><div class="addr">${esc(p.area || '한국')}<br>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}<br><span style="color:#a2ada9">${p.source === 'local' ? '기본 지명 참고 좌표 · 정확한 주소는 외부 지도 확인' : p.source === 'online' ? '공개 지도 검색 결과 · 실제 위치 확인 권장' : '입력된 좌표'}</span></div><div class="buttons"><button class="primary" id="routeBtn">↗ ${dict[lang].route}</button><button id="copyBtn">${dict[lang].copy}</button><button id="saveBtn">${isSaved ? dict[lang].unsave : dict[lang].save}</button></div>`; el('detailClose').onclick = () => { selected = null; el('detail').hidden = true; renderMap(); render(); }; el('routeBtn').onclick = () => window.open(`https://map.naver.com/p/search/${encodeURIComponent(p.ko || p.ja || p.raw || `${p.lat},${p.lon}`)}`, '_blank', 'noopener'); el('copyBtn').onclick = async () => { let val = p.area && p.source === 'coord' ? `${p.lat}, ${p.lon}` : p.ko + ' / ' + (p.ja || '') + ' / ' + p.area + ' / ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6); try {
+} let p = selected; let isSaved = saved.some(x => x.id === p.id); el('detail').hidden = false; el('detail').innerHTML = `<button class="close" id="detai
+lClose">✕</button><div class="detail-kicker">${p.source === 'local' ? 'BILINGUAL PLACE' : p.source === 'online' ? 'OPEN MAP DATA' : 'COORDINATES'}</div><h2>${esc(name(p))}</h2><div class="alt">${esc(alt(p))}${p.raw && !p.ko && !p.ja ? ' · ' + esc(p.raw) : ''}</div><div class="addr">${esc(p.area || '한국')}<br>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}<br><span style="color:#a2ada9">${p.source === 'local' ? '기본 지명 참고 좌표 · 정확한 주소는 외부 지도 확인' : p.source === 'online' ? '공개 지도 검색 결과 · 실제 위치 확인 권장' : '입력된 좌표'}</span></div><div class="buttons"><button class="primary" id="routeBtn">↗ ${dict[lang].route}</button><button id="copyBtn">${dict[lang].copy}</button><button id="saveBtn">${isSaved ? dict[lang].unsave : dict[lang].save}</button></div>`; el('detailClose').onclick = () => { selected = null; el('detail').hidden = true; renderMap(); render(); }; el('routeBtn').onclick = () => window.open(`https://map.naver.com/p/search/${encodeURIComponent(p.ko || p.ja || p.raw || `${p.lat},${p.lon}`)}`, '_blank', 'noopener'); el('copyBtn').onclick = async () => { let val = p.area && p.source === 'coord' ? `${p.lat}, ${p.lon}` : p.ko + ' / ' + (p.ja || '') + ' / ' + p.area + ' / ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6); try {
     await navigator.clipboard.writeText(val);
 }
 catch {
